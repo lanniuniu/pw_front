@@ -32,9 +32,6 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
-    .home{
-        background-color: rgba(248, 251, 117, 0.1);
-    }
     section{
         text-align: center;
     }
