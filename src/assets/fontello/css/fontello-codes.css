@@ -1,0 +1,10 @@
+
+.icon-info-circled:before { content: '\e800'; } /* '' */
+.icon-home:before { content: '\e801'; } /* '' */
+.icon-doc:before { content: '\e802'; } /* '' */
+.icon-eye:before { content: '\e803'; } /* '' */
+.icon-headphones:before { content: '\e804'; } /* '' */
+.icon-search:before { content: '\e805'; } /* '' */
+.icon-login:before { content: '\e806'; } /* '' */
+.icon-gamepad:before { content: '\f11b'; } /* '' */
+.icon-thumbs-up-alt:before { content: '\f164'; } /* '' */

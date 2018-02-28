@@ -5,16 +5,16 @@
                 <h3>我有一个呆宝宝</h3>
                 <h3>她是一个大哈宝</h3>
             </section>
-            <img src="../../static/dai1.jpg" alt="呆宝宝">
+            <img src="../../static/img/dai1.jpg" alt="呆宝宝">
             <section>
                 <h3>她为什么这么哈</h3>
                 <h3>我也不晓得的嘛</h3>
             </section>
-            <img src="../../static/dai2.jpg" alt="我爱你">
+            <img src="../../static/img/dai2.jpg" alt="我爱你">
             <section>
                 <h3>爱你哟，呆宝宝</h3>
             </section>
-            <img src="../../static/dai4.jpg" alt="我爱你">
+            <img src="../../static/img/dai4.jpg" alt="我爱你">
         </div>
     </div>
 </template>
