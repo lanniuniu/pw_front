@@ -34,7 +34,8 @@
             <label for="search"><span class="icon-search" title="搜索" @click="UISearch" id="searchBtn"></span>
                 <input type="search" id="search" placeholder="Search">
             </label>
-            <span class="icon-login" title="登录"></span>
+            <span class="icon-login" title="登录" @click="login"></span>
+            <modal-component id="loginModal"></modal-component>
         </div>
     </nav>
 </template>
@@ -50,12 +51,21 @@
                 document.querySelector("#search").style.display = "inline-block";
                 this.UISearchUnFocus();
             },
+            //搜索按钮unfocus的UI
             UISearchUnFocus() {
                 document.querySelector("#search").addEventListener("blur", function () {
                     document.querySelector("#search").style.display = "none";
                     document.querySelector("#searchBtn").style.display = "inline-block";
                 })
-            }
+            },
+            //打开login框
+            login(){
+                if (document.querySelector("#loginModal").style.display === 'none'||document.querySelector("#loginModal").style.display === ''){
+                    document.querySelector("#loginModal").style.display = 'block';
+                }else {
+                    document.querySelector("#loginModal").style.display = 'none';
+                }
+            },
         },
     }
 </script>

@@ -5,9 +5,20 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>pw_front</title>
     <link rel="stylesheet" href="src/assets/css/reset.css">
+    <style>
+        #cover{
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: 10000;
+            outline: 1000rem solid rgba(0,0,0,0.4);
+        }
+    </style>
 </head>
 <body>
 <div id="app"></div>
+<div id="cover"></div>
 <!-- built files will be auto injected -->
 </body>
 <script src="src/assets/js/adapt.js"></script>

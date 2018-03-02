@@ -11,7 +11,13 @@
     export default {
         name: 'hello',
         data() {
-            return {}
+            return {
+                articleLists:[
+                    {
+
+                    },
+                ],
+            }
         }
     }
 </script>

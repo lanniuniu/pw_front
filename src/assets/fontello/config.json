@@ -95,6 +95,12 @@
       "css": "moon",
       "code": 59400,
       "src": "entypo"
+    },
+    {
+      "uid": "95fb2e5fdd1ea7e4a420b6ed330e6b08",
+      "css": "sun",
+      "code": 59401,
+      "src": "meteocons"
     }
   ]
 }

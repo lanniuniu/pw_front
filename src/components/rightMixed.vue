@@ -12,10 +12,10 @@
                     <h3>
                         <span title="QQ"><a class="icon-qq"></a></span>
                         <span title="点击加入QQ群"><a class="icon-users"></a></span>
-                        <span title="邮箱"><a class="icon-mail-alt"></a></span>
-                        <span title="GitHub"><a class="icon-github-circled"></a></span>
-                        <span title="微博"><a class="icon-weibo"></a></span>
-                        <span title="日/夜间模式"><a class="icon-moon"></a></span>
+                        <span title="邮箱" @click="jumpPage"><a target="_blank" href="mailto:1129638103@qq.com" class="icon-mail-alt"></a></span>
+                        <span title="Github" @click="jumpPage"><a target="_blank" href="https://github.com/lanniuniu" class="icon-github-circled"></a></span>
+                        <span title="微博" @click="jumpPage"><a target="_blank" href="https://weibo.com/u/1948482917" class="icon-weibo"></a></span>
+                        <span title="日/夜间模式" @click="changeModes"><a class="icon-moon"></a></span>
                     </h3>
                 </div>
             </div>
@@ -28,6 +28,25 @@
 <script>
     export default {
         name: "right-mixed",
+        methods:{
+            //跳转到子节点所对应链接
+            jumpPage(event){
+                event.currentTarget.firstChild.click();
+            },
+            //改变日夜间模式
+            changeModes(event){
+                let target = event.currentTarget.firstChild;
+                if(target.getAttribute('class') === 'icon-moon'){
+                    // 改变为夜间模式
+                    target.setAttribute('class','icon-sun');
+                    document.querySelector("#cover").style.display = "block"
+                }else {
+                    //改变为日间模式
+                    target.setAttribute('class','icon-moon');
+                    document.querySelector("#cover").style.display = "none"
+                }
+            },
+        },
     }
 </script>
 
