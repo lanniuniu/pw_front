@@ -28,7 +28,6 @@
         height: 13rem;
         background-color: #563d7c;
         border-radius: 0.5rem;
-        border: 1px solid #ffe484;
         box-shadow: 0 2px 5px #cbbde2;
         display: none;
         padding: 1rem;
@@ -61,7 +60,7 @@
         input:focus{
             outline: none;
             border-color: #ffe484;
-            box-shadow: 0 0 0 3px #ffe484;
+            box-shadow: 0 0 0 2px #ffe484;
         }
         button{
             padding: 0 1rem;

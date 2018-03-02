@@ -14,7 +14,7 @@
                         <span title="点击加入QQ群"><a class="icon-users"></a></span>
                         <span title="邮箱" @click="jumpPage"><a target="_blank" href="mailto:1129638103@qq.com" class="icon-mail-alt"></a></span>
                         <span title="Github" @click="jumpPage"><a target="_blank" href="https://github.com/lanniuniu" class="icon-github-circled"></a></span>
-                        <span title="微博" @click="jumpPage"><a target="_blank" href="https://weibo.com/u/1948482917" class="icon-weibo"></a></span>
+                        <span title="微博" @click="jumpPage"><a target="_blank" href="http://weibo.com/shijiujiange" class="icon-weibo"></a></span>
                         <span title="日/夜间模式" @click="changeModes"><a class="icon-moon"></a></span>
                     </h3>
                 </div>
