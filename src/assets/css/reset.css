@@ -2,7 +2,22 @@
  * Created by 懒牛牛 on 2018/2/27.
  */
 
-body,p,ul,div{
+body,p,ul,div,h1,h2,h3,h4,h5,h6{
     margin: 0;
     padding: 0;
 }
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    background-color: #563d7c;
+}
+::-webkit-scrollbar-track{
+    border: 1px solid #ffe484;
+    border-radius: 5px;
+}
+::-webkit-scrollbar-thumb{
+    width: 10px;
+    background-color: #cbbde2;
+    border-radius: 5px;
+}
+

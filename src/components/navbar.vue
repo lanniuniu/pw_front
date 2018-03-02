@@ -24,7 +24,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="#">
-                        <span class="icon-info-circled">About me</span>
+                        <span class="icon-info-circled"></span>About me
                     </a>
                 </li>
 
@@ -32,30 +32,26 @@
         </div>
         <div class="nav-behavior">
             <label for="search"><span class="icon-search" title="搜索" @click="UISearch" id="searchBtn"></span>
-                <input type="search" id="search" placeholder="Search" >
+                <input type="search" id="search" placeholder="Search">
             </label>
             <span class="icon-login" title="登录"></span>
         </div>
-
-
     </nav>
 </template>
 <script>
     export default {
-        data(){
-            return{
-
-            }
+        data() {
+            return {}
         },
-        methods:{
+        methods: {
             //点击搜索按钮的UI交互
-            UISearch(event){
+            UISearch(event) {
                 event.currentTarget.style.display = "none";
                 document.querySelector("#search").style.display = "inline-block";
                 this.UISearchUnFocus();
             },
-            UISearchUnFocus(){
-                document.querySelector("#search").addEventListener("blur",function () {
+            UISearchUnFocus() {
+                document.querySelector("#search").addEventListener("blur", function () {
                     document.querySelector("#search").style.display = "none";
                     document.querySelector("#searchBtn").style.display = "inline-block";
                 })
@@ -66,44 +62,27 @@
 
 <style lang="less">
 
-    #nav{
+    #nav {
         background-color: #563d7c;
-        height: 60px;
+        height: 4rem;
         color: #cbbde2;
         position: fixed;
         width: 100rem;
         top: 0;
-
-        a{
+        box-shadow: 0 2px 5px #cbbde2;
+        z-index: 1000;
+        a {
             color: inherit;
-            width: 20rem;
             text-decoration: none;
-            font-size: 18px;
-            span{
-                font-size: 20px;
-            }
         }
-        a:hover{
+        a:hover {
             color: #fff;
         }
-
-        ul{
-            width: 37.5rem;
-            height:60px;
-            margin: 0 auto;
-
-        }
-        li{
-            float: left;
-            list-style-type: none;
-            margin-left: 2rem;
-        }
-
         //标志
-        .brand{
+        .brand {
             font-weight: 900;
-            font-size: 30px;
-            line-height: 60px;
+            font-size: 2.3rem;
+            line-height: 4rem;
             width: 25rem;
             text-align: center;
             display: block;
@@ -111,34 +90,50 @@
         }
 
         //功能栏
-        .nav-list{
-            display: block;
+        .nav-list {
             width: 50rem;
-            height: 60px;
-            line-height: 60px;
+            height: 4rem;
+            line-height: 4rem;
             float: left;
+            text-align: center;
+            ul {
+                width: 39rem;
+                height: 4rem;
+                display: inline-block;
+                li {
+                    float: left;
+                    list-style-type: none;
+                    margin-left: 2rem;
+                }
+            }
+            a{
+                font-size: 1.2rem;
+                span {
+                    font-size: 1.4rem;
+                }
+            }
         }
 
         //操作栏
-        .nav-behavior{
+        .nav-behavior {
             width: 25rem;
-            height: 60px;
+            height: 4rem;
             text-align: center;
-            line-height: 60px;
+            line-height: 4rem;
             float: left;
-            span{
-                font-size: 20px;
+            span {
+                font-size: 1.4rem;
             }
-            span:hover{
+            span:hover {
                 color: #ffe484;
                 cursor: pointer;
             }
-            label{
+            label {
                 margin-right: 1rem;
             }
-            #search{
-                line-height: 60px;
-                width: 10rem;
+            #search {
+                line-height: 4rem;
+                width: 12rem;
                 height: 2rem;
                 display: none;
                 border-radius: 0.5rem;
@@ -147,7 +142,7 @@
                 box-shadow: none;
                 transition: box-shadow 0.15s ease-in-out;
             }
-            #search:focus{
+            #search:focus {
                 outline: none;
                 box-shadow: 0 0 0 3px #ffe484;
             }

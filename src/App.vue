@@ -14,6 +14,8 @@
 <style>
     #app {
         position: absolute;
+        width: 100rem;
+        background-color: #f6f6f6;
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;

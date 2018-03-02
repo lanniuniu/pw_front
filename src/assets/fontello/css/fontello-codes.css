@@ -6,5 +6,11 @@
 .icon-headphones:before { content: '\e804'; } /* '' */
 .icon-search:before { content: '\e805'; } /* '' */
 .icon-login:before { content: '\e806'; } /* '' */
+.icon-users:before { content: '\e807'; } /* '' */
+.icon-moon:before { content: '\e808'; } /* '' */
+.icon-github-circled:before { content: '\f09b'; } /* '' */
+.icon-mail-alt:before { content: '\f0e0'; } /* '' */
 .icon-gamepad:before { content: '\f11b'; } /* '' */
 .icon-thumbs-up-alt:before { content: '\f164'; } /* '' */
+.icon-weibo:before { content: '\f18a'; } /* '' */
+.icon-qq:before { content: '\f1d6'; } /* '' */
