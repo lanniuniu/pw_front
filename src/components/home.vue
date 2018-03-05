@@ -18,7 +18,13 @@
                     },
                 ],
             }
-        }
+        },
+        created(){
+
+        },
+        methods:{
+
+        },
     }
 </script>
 

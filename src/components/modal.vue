@@ -68,7 +68,7 @@
             border: 1px solid #cbbde2;
             height: 2.5rem;
             line-height: 2.5rem;
-            background-color: #47157c;
+            background-color: #563d7c;
             color: #cbbde2;
             font-size: 1.1rem;
             margin: 0 0.3rem;
@@ -76,6 +76,7 @@
         button:hover{
             cursor: pointer;
             color: #ffe484;
+            background-color: #47157c;
         }
         button:focus{
                 outline: none;
