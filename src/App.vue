@@ -6,12 +6,17 @@
 </template>
 
 <script>
+    import adapt from './assets/js/adapt';//引入自适应js
     export default {
-        name: 'app'
+        name: 'app',
+        mounted(){
+            adapt();
+        },
     }
 </script>
 
 <style>
+    @import "./assets/css/reset.css";
     #app {
         position: absolute;
         width: 100rem;

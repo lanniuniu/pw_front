@@ -1,10 +1,13 @@
 <template>
     <div class="modal">
         <h1>登录 <span @click="closeModal">×</span></h1>
-        <input type="text" placeholder="username/email">
-        <input type="password" placeholder="password">
+        <input type="text" placeholder="username/email" id="userName">
+        <input type="password" placeholder="password" id="password">
 
-        <div><button @click="closeModal">取消</button><button>登录</button></div>
+        <div>
+            <button @click="closeModal">取消</button>
+            <button @click="login">登录</button>
+        </div>
     </div>
 </template>
 
@@ -12,9 +15,19 @@
     export default {
         name: "modal",
         methods:{
+            //隐藏modal框
             closeModal(){
                 document.querySelector(".modal").style.display = 'none';
             },
+            //登录
+            login(){
+                let userName = document.querySelector("#userName").value;
+                let password = document.querySelector("#password").value;
+                let csrfToken = document.cookie.split('&')[0].split('=')[1];
+                this.$http.post('/login',{userName:userName,password:password,csrfToken:csrfToken}).then(response=>{
+                    console.log(response)
+                });
+            }
         },
     }
 </script>

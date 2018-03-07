@@ -34,7 +34,7 @@
             <label for="search"><span class="icon-search" title="搜索" @click="UISearch" id="searchBtn"></span>
                 <input type="search" id="search" placeholder="Search">
             </label>
-            <span class="icon-login" title="登录" @click="login"></span>
+            <span class="icon-login" title="登录" @click="openLoginModal"></span>
             <modal-component id="loginModal"></modal-component>
         </div>
     </nav>
@@ -59,7 +59,7 @@
                 })
             },
             //打开login框
-            login(){
+            openLoginModal(){
                 if (document.querySelector("#loginModal").style.display === 'none'||document.querySelector("#loginModal").style.display === ''){
                     document.querySelector("#loginModal").style.display = 'block';
                 }else {
