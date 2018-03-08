@@ -1,7 +1,7 @@
 <template>
     <div class="modal">
         <h1>登录 <span @click="closeModal">×</span></h1>
-        <input type="text" placeholder="username/email" id="userName">
+        <input type="text" placeholder="username/email" id="username">
         <input type="password" placeholder="password" id="password">
 
         <div>
@@ -12,8 +12,12 @@
 </template>
 
 <script>
+    const CryptoJS = require("crypto-js");
     export default {
         name: "modal",
+        mounted(){
+
+        },
         methods:{
             //隐藏modal框
             closeModal(){
@@ -21,12 +25,26 @@
             },
             //登录
             login(){
-                let userName = document.querySelector("#userName").value;
-                let password = document.querySelector("#password").value;
-                let csrfToken = document.cookie.split('&')[0].split('=')[1];
-                this.$http.post('/login',{userName:userName,password:password,csrfToken:csrfToken}).then(response=>{
+                let params = {};
+                params.username = document.querySelector("#username").value.toString();
+                let password = document.querySelector("#password").value.toString();
+                params.csrfToken = this._getCookie('csrfToken');
+                params.ip = JSON.stringify(this._getClientIP());
+                params.encodePassword = CryptoJS.AES.encrypt(password,params.csrfToken).toString();
+                this.$http.post('/user/login',params).then(response=>{
                     console.log(response)
                 });
+            },
+            //获取对应key的cookie值
+            _getCookie(key){
+                let cookies = document.cookie;
+                let getKeyRegExp = new RegExp(key+"=[\\w-]*");
+                let getKey = cookies.match(getKeyRegExp)[0];
+                return getKey.split('=')[1];
+            },
+            //获取客户端ip
+            _getClientIP(){
+                return returnCitySN;
             }
         },
     }

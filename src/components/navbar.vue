@@ -84,6 +84,7 @@
         a {
             color: inherit;
             text-decoration: none;
+            transition: color 0.2s ease-in-out;
         }
         a:hover {
             color: #fff;
@@ -133,6 +134,7 @@
             float: left;
             span {
                 font-size: 1.4rem;
+                transition: color 0.2s ease-in-out;
             }
             span:hover {
                 color: #ffe484;
