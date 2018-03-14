@@ -62,12 +62,17 @@
             openLoginModal(){
                 if (document.querySelector("#loginModal").style.display === 'none'||document.querySelector("#loginModal").style.display === ''){
                     document.querySelector("#loginModal").style.display = 'block';
+                    document.querySelector("#username").focus();
                 }else {
                     document.querySelector("#loginModal").style.display = 'none';
                 }
             },
         },
     }
+
+
+
+
 </script>
 
 <style lang="less">

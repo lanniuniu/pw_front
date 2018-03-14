@@ -6,60 +6,33 @@
 
         <div>
             <button @click="closeModal">取消</button>
-            <button @click="login">登录</button>
+            <button id="login">登录</button>
         </div>
     </div>
 </template>
 
 <script>
-    const CryptoJS = require("crypto-js");
     export default {
         name: "modal",
-        mounted(){
-            this.test();
-
+        mounted() {
         },
-        methods:{
+        data(){
+            return{
+
+            }
+        },
+        methods: {
             //隐藏modal框
-            closeModal(){
+            closeModal() {
                 document.querySelector(".modal").style.display = 'none';
             },
-            //登录
-            login(){
-                let params = {};
-                params.username = document.querySelector("#username").value.toString();
-                let password = document.querySelector("#password").value.toString();
-                params.csrfToken = this._getCookie('csrfToken');
-                params.ip = JSON.stringify(this._getClientIP());
-                params.encodePassword = CryptoJS.AES.encrypt(password,params.csrfToken).toString();
-                this.$http.post('/user/login',params).then(response=>{
-                    console.log(response)
-                });
-            },
-            //获取对应key的cookie值
-            _getCookie(key){
-                let cookies = document.cookie;
-                let getKeyRegExp = new RegExp(key+"=[\\w-]*");
-                let getKey = cookies.match(getKeyRegExp)[0];
-                return getKey.split('=')[1];
-            },
-            //获取客户端ip
-            _getClientIP(){
-                return returnCitySN;
-            },
 
-            //测试
-            test(){
-                let a = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36';
-                let textRegExp = new RegExp("Chrome/[0-9.]+");
-                console.log(a.match(textRegExp))
-            }
         },
     }
 </script>
 
 <style scoped lang="less">
-    .modal{
+    .modal {
         position: fixed;
         top: 4.5rem;
         right: 1rem;
@@ -70,17 +43,17 @@
         box-shadow: 0 2px 5px #cbbde2;
         display: none;
         padding: 1rem;
-        h1{
+        h1 {
             color: #cbbde2;
             line-height: 2rem;
             font-size: 1.5rem;
             text-align: left;
-            span{
+            span {
                 float: right;
                 font-size: 1rem;
             }
         }
-        input{
+        input {
             display: block;
             width: 58%;
             height: 1.8rem;
@@ -91,17 +64,17 @@
             color: #cbbde2;
             font-size: 1rem;
             padding: 0.3rem 0.5rem;
-            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+            transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
         }
         input::-webkit-input-placeholder { /* WebKit browsers */
             color: #cbbde2;
         }
-        input:focus{
+        input:focus {
             outline: none;
             border-color: #ffe484;
             box-shadow: 0 0 0 2px #ffe484;
         }
-        button{
+        button {
             padding: 0 1rem;
             border-radius: 0.5rem;
             border: 1px solid #cbbde2;
@@ -112,14 +85,14 @@
             font-size: 1.1rem;
             margin: 0 0.3rem;
         }
-        button:hover{
+        button:hover {
             cursor: pointer;
             color: #ffe484;
             background-color: #47157c;
         }
-        button:focus{
-                outline: none;
-                box-shadow: 0 0 0 3px rgba(121,82,179,.25);
-            }
+        button:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(121, 82, 179, .25);
+        }
     }
 </style>

@@ -4,26 +4,125 @@
 
         </div>
         <right-mixed-component></right-mixed-component>
+        <news-tips-component :backgroundProp="newsTips.background" :msgProp="newsTips.msg"></news-tips-component>
     </div>
 </template>
 
 <script>
+    const CryptoJS = require("crypto-js");
     export default {
         name: 'hello',
         data() {
             return {
-                articleLists:[
+                articleLists:[//博客列表
                     {
 
                     },
                 ],
+                newsTips:{//消息提示
+                    background:'',//背景色
+                    msg: '',//消息内容
+                },
             }
         },
         created(){
 
         },
-        methods:{
+        mounted(){
+            this.enterLogin();
+            this.clickLogin();
 
+
+        },
+        methods:{
+            //登录
+            login() {
+                let params = {};
+                params.username = document.querySelector("#username").value.toString();
+                let password = document.querySelector("#password").value.toString();
+                params.csrfToken = this._getCookie('csrfToken');
+                params.token = this._getCookie('token');
+                params.ip = JSON.stringify(this._getClientIP());
+                params.encodePassword = CryptoJS.AES.encrypt(password, params.csrfToken).toString();
+                let self = this;
+                self.$http.post('http://localhost:7001/user/login', params).then(response => {
+                    if(response.body.code === 200){
+                        self.newsTips.background = 'success';
+                        self.newsTips.msg = response.body.msg;
+                        document.querySelector(".modal").style.display = 'none';
+                        document.querySelector(".newsTips").style.display = 'block';
+                        setTimeout(function () {
+                            document.querySelector(".newsTips").style.display = 'none';
+                            document.querySelector(".modal").style.display = 'none';
+                        },1000)
+                    }else {
+                        self.newsTips.background = 'error';
+                        self.newsTips.msg = response.body.msg;
+                        document.querySelector(".newsTips").style.display = 'block';
+                        setTimeout(function () {
+                            document.querySelector(".newsTips").style.display = 'none';
+                        },1000)
+                    }
+                });
+            },
+            //添加用户
+            addUser() {
+                let params = {};
+                params.username = document.querySelector("#username").value.toString();
+                let password = document.querySelector("#password").value.toString();
+                params.csrfToken = this._getCookie('csrfToken');
+                params.ip = JSON.stringify(this._getClientIP());
+                params.encodePassword = CryptoJS.AES.encrypt(password, params.csrfToken).toString();
+                this.$http.post('/user/add', params).then(response => {
+                    // alert(response.msg)
+                });
+            },
+
+            //回车键登录
+            enterLogin() {
+                const self = this;
+                document.addEventListener('keyup', function (event) {
+                    if (event.key === 'Enter') {//按的回车键
+                        if (document.querySelector(".modal").style.display = 'block') {
+                            self.login();
+                        }
+                    }
+                })
+            },
+            //点击登陆
+            clickLogin(){
+                const self = this;
+                document.querySelector("#login").addEventListener("click",function () {
+                    self.login();
+                })
+            },
+            //获取对应key的cookie值
+            _getCookie(key) {
+                let cookies = document.cookie;
+                let getKeyRegExp = new RegExp(key + "=[\\w-]*");
+                let getKey = cookies.match(getKeyRegExp);
+                if (!!getKey) {
+                    return getKey[0].split('=')[1];
+                } else {
+                    return '无法找到指定cookie'
+                }
+            },
+            //获取客户端ip
+            _getClientIP() {
+                return returnCitySN;
+            },
+            //测试
+            test(key) {
+                let cookies = document.cookie;
+                let getKeyRegExp = new RegExp(key + "=[\\w-]*");
+                let getKey = cookies.match(getKeyRegExp);
+                console.log(cookies.match(getKeyRegExp))
+                if (!!getKey) {
+                    return getKey[0].split('=')[1];
+                } else {
+                    return '无指定cookie';
+                }
+            }
         },
     }
 </script>
