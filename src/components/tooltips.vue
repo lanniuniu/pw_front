@@ -3,9 +3,9 @@
         <slot>
 
         </slot>
-        <div class="tooltipsDiv">
+        <!--<div class="tooltipsDiv">-->
 
-        </div>
+        <!--</div>-->
     </div>
 </template>
 
@@ -19,24 +19,12 @@
             }
         },
         mounted(){
-            this.preparing();
+            // this.preparing();
         },
         methods:{
             preparing(){
-                //判断方向和title内容,将title内容添加到div中
-                let element = document.querySelector(".tooltips");
-                let title = element.getAttribute('title');
-                let elementClass =  element.getAttribute('class');
-                let classes = elementClass.split(' ');
-                let positionClass;
-                classes.map((value)=>{
-                    if(value.indexOf('tooltips-')!==-1){
-                        positionClass = value;
-                    }
-                    return false;
-                });
-                this.position = positionClass.split('-')[1];
-                document.querySelector(".target .tooltipsDiv").innerHTML = title;
+                //判断方向 确定位置
+
             }
         },
     }

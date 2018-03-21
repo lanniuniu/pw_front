@@ -5,6 +5,11 @@
         </div>
         <right-mixed-component></right-mixed-component>
         <news-tips-component :backgroundProp="newsTips.background" :msgProp="newsTips.msg"></news-tips-component>
+        <tooltips-component>
+            <h1 id="lastLoginAddress"></h1>
+            <h1 id="lastLoginDate"></h1>
+            <h1 id="lastLoginIp"></h1>
+        </tooltips-component>
     </div>
 </template>
 
@@ -23,6 +28,11 @@
                     background:'',//背景色
                     msg: '',//消息内容
                 },
+                tooltips:{//工具提示
+                    lastLoginAddress:'',
+                    lastLoginDate:'',
+                    lastLoginIp:'',
+                },
             }
         },
         created(){
@@ -31,7 +41,6 @@
         mounted(){
             this.enterLogin();
             this.clickLogin();
-
 
         },
         methods:{
@@ -51,7 +60,12 @@
                         self.newsTips.msg = response.body.msg;
                         document.querySelector(".modal").style.display = 'none';
                         document.querySelector(".newsTips").style.display = 'block';
+                        self.tooltips = response.body.user;
+                        sessionStorage.setItem("user",JSON.stringify(response.body.user));
                         setTimeout(function () {
+                            document.querySelector(".nav-behavior .icon-login").style.display = 'none';
+                            document.querySelector("#welcome").style.display = 'inline';
+                            document.querySelector("#name").innerHTML = `${response.body.user.username}`;
                             document.querySelector(".newsTips").style.display = 'none';
                             document.querySelector(".modal").style.display = 'none';
                         },1000)
@@ -65,6 +79,7 @@
                     }
                 });
             },
+
             //添加用户
             addUser() {
                 let params = {};
@@ -89,6 +104,7 @@
                     }
                 })
             },
+
             //点击登陆
             clickLogin(){
                 const self = this;
@@ -96,6 +112,9 @@
                     self.login();
                 })
             },
+
+            //监听tooltips
+
             //获取对应key的cookie值
             _getCookie(key) {
                 let cookies = document.cookie;

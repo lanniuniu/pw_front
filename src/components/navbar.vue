@@ -34,15 +34,40 @@
             <label for="search"><span class="icon-search" title="搜索" @click="UISearch" id="searchBtn"></span>
                 <input type="search" id="search" placeholder="Search">
             </label>
-            <span class="icon-login" title="登录" @click="openLoginModal"></span>
+            <span v-if="isLogin" class="icon-login" title="登录" @click="openLoginModal"></span>
             <modal-component id="loginModal"></modal-component>
+            <div id="welcome" :class="isWelcome" data-tooltips="tooltips">welcome,&nbsp;<span id="name">{{loginUsername}}</span></div>
         </div>
     </nav>
 </template>
 <script>
     export default {
         data() {
-            return {}
+            return {
+
+            }
+        },
+        mounted(){
+
+        },
+        computed:{
+            //是否登录
+            isLogin(){
+                return !sessionStorage.getItem("user");
+            },
+            //登录的用户名
+            loginUsername(){
+                let user = sessionStorage.getItem("user");
+                if(user){
+                    return JSON.parse(user).username;
+                }else {
+                    return '';
+                }
+            },
+            //是否。。。
+            isWelcome(){
+                return sessionStorage.getItem("user")? 'inline-block':'none';
+            },
         },
         methods: {
             //点击搜索按钮的UI交互
@@ -99,7 +124,7 @@
             font-weight: 900;
             font-size: 2.3rem;
             line-height: 4rem;
-            width: 25rem;
+            width: 20rem;
             text-align: center;
             display: block;
             float: left;
@@ -132,7 +157,7 @@
 
         //操作栏
         .nav-behavior {
-            width: 25rem;
+            width: 30rem;
             height: 4rem;
             text-align: center;
             line-height: 4rem;
@@ -163,6 +188,24 @@
                 outline: none;
                 box-shadow: 0 0 0 3px #ffe484;
             }
+        }
+
+        //欢迎
+        #welcome{
+            font-size: 1.2rem;
+            #name{
+                font-size: 1.2rem;
+                color: #ffe484;
+            }
+            #name:hover{
+                cursor: pointer;
+            }
+        }
+        .inline-block{
+            display: inline-block;
+        }
+        .none{
+            display: none;
         }
     }
 
