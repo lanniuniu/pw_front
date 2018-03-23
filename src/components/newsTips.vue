@@ -1,7 +1,5 @@
 <template>
-    <div :class="backgroundProp" class="newsTips">
-       {{msgProp}}
-    </div>
+    <div :class="backgroundProp" class="newsTips">{{msgProp}}</div>
 </template>
 
 <script>

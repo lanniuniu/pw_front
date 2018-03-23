@@ -12,9 +12,12 @@
                     <h3>
                         <span title="QQ"><a class="icon-qq"></a></span>
                         <span title="点击加入QQ群"><a class="icon-users"></a></span>
-                        <span title="邮箱" @click="jumpPage"><a target="_blank" href="mailto:1129638103@qq.com" class="icon-mail-alt"></a></span>
-                        <span title="Github" @click="jumpPage"><a target="_blank" href="https://github.com/lanniuniu" class="icon-github-circled"></a></span>
-                        <span title="微博" @click="jumpPage"><a target="_blank" href="http://weibo.com/shijiujiange" class="icon-weibo"></a></span>
+                        <span title="邮箱" @click="jumpPage"><a target="_blank" href="mailto:1129638103@qq.com"
+                                                              class="icon-mail-alt"></a></span>
+                        <span title="Github" @click="jumpPage"><a target="_blank" href="https://github.com/lanniuniu"
+                                                                  class="icon-github-circled"></a></span>
+                        <span title="微博" @click="jumpPage"><a target="_blank" href="http://weibo.com/shijiujiange"
+                                                              class="icon-weibo"></a></span>
                         <span title="日/夜间模式" @click="changeModes"><a class="icon-moon"></a></span>
                     </h3>
                 </div>
@@ -28,21 +31,21 @@
 <script>
     export default {
         name: "right-mixed",
-        methods:{
+        methods: {
             //跳转到子节点所对应链接
-            jumpPage(event){
+            jumpPage(event) {
                 event.currentTarget.firstChild.click();
             },
             //改变日夜间模式
-            changeModes(event){
+            changeModes(event) {
                 let target = event.currentTarget.firstChild;
-                if(target.getAttribute('class') === 'icon-moon'){
+                if (target.getAttribute('class') === 'icon-moon') {
                     // 改变为夜间模式
-                    target.setAttribute('class','icon-sun');
+                    target.setAttribute('class', 'icon-sun');
                     document.querySelector("#cover").style.display = "block"
-                }else {
+                } else {
                     //改变为日间模式
-                    target.setAttribute('class','icon-moon');
+                    target.setAttribute('class', 'icon-moon');
                     document.querySelector("#cover").style.display = "none"
                 }
             },
@@ -51,34 +54,34 @@
 </script>
 
 <style lang="less">
-    #rightMixed{
+    #rightMixed {
         width: 28.5rem;
         float: right;
         padding: 1rem;
         background-color: #fff;
         border-radius: 0.5rem;
 
-        #person{
+        #person {
             #love {
                 /*img:nth-child(1){*/
-                    /*width: 8rem;*/
-                    /*border-radius: 1rem;*/
-                    /*margin-left: 2rem;*/
-                    /*display: inline-block;*/
-                    /*float: left;*/
+                /*width: 8rem;*/
+                /*border-radius: 1rem;*/
+                /*margin-left: 2rem;*/
+                /*display: inline-block;*/
+                /*float: left;*/
                 /*}*/
                 text-align: center;
-                img:nth-child(1){
+                img:nth-child(1) {
                     width: 28rem;
                     display: inline-block;
                     border-radius: 0.5rem;
                 }
             }
-            #mine{
+            #mine {
                 text-align: center;
                 position: relative;
                 height: 12rem;
-                img{
+                img {
                     display: inline-block;
                     width: 12rem;
                     border-radius: 6rem;
@@ -86,27 +89,39 @@
                     position: absolute;
                     left: 50%;
                     top: 50%;
-                    transform: translate(-50%,-106%);
-                    transition: border 0.2s ease-in-out,box-shadow 0.2s ease-in-out;
+                    transform: translate(-50%, -106%);
+                    transition: border 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+                    animation: rotate 10s linear infinite;
+                    animation-play-state:running;
+
                 }
-                img:hover{
-                    box-shadow: 0 0 0 3px rgba(121,82,179,.25);
-                    border:  2px solid #7952b3;
+                @keyframes rotate {
+                    from{
+                        transform: translate(-50%, -106%) rotate(0);
+                    }
+                    to{
+                        transform: translate(-50%, -106%) rotate(1turn);
+                    }
+                }
+                img:hover {
+                    box-shadow: 0 0 0 3px rgba(121, 82, 179, .25);
+                    border: 2px solid #7952b3;
                     cursor: pointer;
+                    animation-play-state:paused;
                 }
-                div{
+                div {
                     position: absolute;
                     width: 100%;
                     top: 5.3rem;
                     left: 50%;
-                    transform: translate(-50%,0);
-                    h4{
+                    transform: translate(-50%, 0);
+                    h4 {
                         font-weight: normal;
                         margin-top: 0.1rem;
                     }
-                    h3{
+                    h3 {
                         margin-top: 0.2rem;
-                        span{
+                        span {
                             display: inline-block;
                             width: 3rem;
                             height: 3rem;
@@ -116,15 +131,15 @@
                             margin-left: 0.5rem;
                             transition: box-shadow 0.2s ease-in-out;
 
-                            a{
+                            a {
                                 color: #cbbde2;
                             }
                         }
-                        span:hover{
+                        span:hover {
                             cursor: pointer;
                             box-shadow: 0 0 0 2px #ffe484;
                         }
-                        span:hover a{
+                        span:hover a {
                             transition: color 0.2s ease-in-out;
                             color: #ffe484;
                             cursor: pointer;
@@ -133,7 +148,6 @@
                 }
             }
         }
-
 
     }
 </style>

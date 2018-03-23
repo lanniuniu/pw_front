@@ -36,7 +36,7 @@
             </label>
             <span v-if="isLogin" class="icon-login" title="登录" @click="openLoginModal"></span>
             <modal-component id="loginModal"></modal-component>
-            <div id="welcome" :class="isWelcome" data-tooltips="tooltips">welcome,&nbsp;<span id="name">{{loginUsername}}</span></div>
+            <div id="welcome" :class="isWelcome">welcome,&nbsp;<span id="name" class="tooltips" data-tooltips="tooltips" data-position="bottom">{{loginUsername}}</span></div>
         </div>
     </nav>
 </template>
@@ -196,6 +196,7 @@
             #name{
                 font-size: 1.2rem;
                 color: #ffe484;
+                padding: 0 0.5rem;
             }
             #name:hover{
                 cursor: pointer;

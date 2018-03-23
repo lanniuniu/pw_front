@@ -11,6 +11,20 @@
         name: 'app',
         mounted(){
             adapt();
+            this.titleChange();
+        },
+        methods:{
+            titleChange(){
+                window.addEventListener("focus",function () {
+                    document.querySelector("title").innerHTML = "欢迎回来（●＾∀＾●）";
+                    setTimeout(function () {
+                        document.querySelector("title").innerHTML = "诗酒剑歌  (..•˘_˘•..)";
+                    },1000)
+                });
+                window.addEventListener("blur",function () {
+                    document.querySelector("title").innerHTML = "来找我呀！=￣ω￣= ";
+                });
+            },
         },
     }
 </script>
