@@ -33,7 +33,6 @@
         },
         mounted() {
             this.preparing();
-            window.Vue = this;
         },
         methods: {
             preparing() {
@@ -44,7 +43,6 @@
                 for (let i = 0; i < tooltips.length; i++) {
                     //tooltips鼠标悬停事件
                     tooltips[i].addEventListener("mouseover", function (event) {
-
                         //提示框的位置
                         let offsetHeight = event.target.offsetHeight;
                         let offsetLeft = event.target.offsetLeft;
@@ -58,27 +56,38 @@
                     });
                     //tooltips鼠标离开事件
                     tooltips[i].addEventListener("mouseout", function (event) {
-                        if (!(event.toElement.className === "tooltipsParent" ||event.toElement.className === "triangle" )) {
+                        if (!((event.toElement && event.toElement.className === "tooltipsParent") || (event.toElement && event.toElement.className === "triangle"))) {
                             tooltipsParent.style.display = 'none';
                         }
                     });
-                    // // tooltipsParent鼠标离开事件
-                    tooltipsParent.addEventListener("mouseout",function (event) {
-                        console.log(event);
-                        let toElement = event.toElement;
-                        if(event.fromElement.className === 'slot'){
-                            if(toElement.nodeName === "DIV"){
-                                if(toElement.id && (toElement.id ==="rightMixed"||toElement.id === "app")){
 
+                    // // tooltipsParent鼠标离开事件
+                    tooltipsParent.addEventListener("mouseout", function (event) {
+                        let isLeave = true;
+                        if (event.toElement && event.toElement.className && event.toElement.className === 'tooltipsParent') {
+                            isLeave = false;
+                        } else {
+                            if (event.toElement && event.toElement.parentElement && event.toElement.parentElement.className && event.toElement.parentElement.className === 'tooltipsParent') {
+                                isLeave = false;
+                            } else {
+                                if (event.toElement && event.toElement.parentElement && event.toElement.parentElement.parentElement && event.toElement.parentElement.parentElement.className && event.toElement.parentElement.parentElement.className === 'tooltipsParent') {
+                                    isLeave = false;
+                                } else {
+                                    if (event.toElement && event.toElement.parentElement && event.toElement.parentElement.parentElement && event.toElement.parentElement.parentElement.parentElement && event.toElement.parentElement.parentElement.parentElement.className && event.toElement.parentElement.parentElement.parentElement.className === 'tooltipsParent') {
+                                        isLeave = false;
+                                    } else {
+                                        if (event.toElement && event.toElement.parentElement && event.toElement.parentElement.parentElement && event.toElement.parentElement.parentElement.parentElement && event.toElement.parentElement.parentElement.parentElement.parentElement && event.toElement.parentElement.parentElement.parentElement.parentElement.className && event.toElement.parentElement.parentElement.parentElement.parentElement.className === 'tooltipsParent') {
+                                            isLeave = false;
+                                        }
+                                    }
                                 }
                             }
                         }
-
-
-                        if(event.fromElement.className === 'slot'&& (event.toElement.className==='nav-behavior'||event.toElement.parentElement.id ==='love')||event.toElement.id ==='app'||event.toElement.id ==='rightMixed'){
-                            // tooltipsParent.style.display = 'none';
+                        if (isLeave) {
+                            tooltipsParent.style.display = 'none';
                         }
-                    })
+                    });
+
                 }
             },
         },

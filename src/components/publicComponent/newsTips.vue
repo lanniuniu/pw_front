@@ -41,7 +41,9 @@
         position: fixed;
         top: 50%;
         left: 50%;
-        transform: translate(-50%,-50%);
+        transform-origin: 0 0;
+        transform: scale(0) translate(-50%,-50%) ;
+        transition: transform 0.5s ease-in-out;
     }
     .error{
         background-color: #dc3545;

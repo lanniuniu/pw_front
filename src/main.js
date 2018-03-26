@@ -9,10 +9,10 @@ import fontello from './assets/fontello/css/fontello.css';//引入字体图标
 import navbar from './components/navbar';//引入导航栏组件
 import rightMixed from './components/rightMixed';//引入导航栏组件
 import modal from './components/modal';//引入modal框组件
-import newsTips from './components/newsTips';//引入消息通知newsTips组件
-import tooltips from './components/tooltips';//引入tooltips组件
-import badge from './components/badge';//引入badge组件
-import button from './components/button';//引入button组件
+import newsTips from './components/publicComponent/newsTips';//引入消息通知newsTips组件
+import tooltips from './components/publicComponent/tooltips';//引入tooltips组件
+import badge from './components/publicComponent/badge';//引入badge组件
+import button from './components/publicComponent/button';//引入button组件
 
 
 Vue.config.productionTip = false;
