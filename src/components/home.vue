@@ -16,6 +16,7 @@
                 articleLists: [//博客列表
                     {},
                 ],
+
             }
         },
         created() {
@@ -38,7 +39,7 @@
     #home {
         width: 90em;
         height: 200rem;
-        margin: 5rem auto;
+        margin: 1rem auto;
     }
 
     //左边

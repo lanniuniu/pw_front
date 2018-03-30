@@ -8,4 +8,5 @@ export default function(){
         let clientWidth = document.body.clientWidth;
         document.querySelector("html").style.fontSize = `${clientWidth/100}px`;
     });
+
 }

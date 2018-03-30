@@ -1,31 +1,13 @@
 Font license info
 
 
-## Font Awesome
+## Meteocons
 
-   Copyright (C) 2016 by Dave Gandy
+   Copyright (C) 2012 by Alessio Atzeni
 
-   Author:    Dave Gandy
-   License:   SIL ()
-   Homepage:  http://fortawesome.github.com/Font-Awesome/
-
-
-## Elusive
-
-   Copyright (C) 2013 by Aristeides Stathopoulos
-
-   Author:    Aristeides Stathopoulos
+   Author:    Alessio Atzeni
    License:   SIL (http://scripts.sil.org/OFL)
-   Homepage:  http://aristeides.com/
-
-
-## Web Symbols
-
-   Copyright (c) 2011 by Just Be Nice studio. All rights reserved.
-
-   Author:    Just Be Nice studio
-   License:   SIL (http://scripts.sil.org/OFL)
-   Homepage:  http://www.justbenicestudio.com/
+   Homepage:  http://www.alessioatzeni.com
 
 
 ## Entypo
@@ -37,12 +19,30 @@ Font license info
    Homepage:  http://www.entypo.com
 
 
-## Meteocons
+## Font Awesome
 
-   Copyright (C) 2012 by Alessio Atzeni
+   Copyright (C) 2016 by Dave Gandy
 
-   Author:    Alessio Atzeni
+   Author:    Dave Gandy
+   License:   SIL ()
+   Homepage:  http://fortawesome.github.com/Font-Awesome/
+
+
+## Web Symbols
+
+   Copyright (c) 2011 by Just Be Nice studio. All rights reserved.
+
+   Author:    Just Be Nice studio
    License:   SIL (http://scripts.sil.org/OFL)
-   Homepage:  http://www.alessioatzeni.com
+   Homepage:  http://www.justbenicestudio.com/
+
+
+## Elusive
+
+   Copyright (C) 2013 by Aristeides Stathopoulos
+
+   Author:    Aristeides Stathopoulos
+   License:   SIL (http://scripts.sil.org/OFL)
+   Homepage:  http://aristeides.com/
 
 

@@ -10,15 +10,15 @@
                     <h1>懒牛牛</h1>
                     <h4>一篇诗，一斗酒，一曲长歌，一剑天涯</h4>
                     <h3>
-                        <span title="QQ"><a class="icon-qq"></a></span>
-                        <span title="点击加入QQ群"><a class="icon-users"></a></span>
+                        <span title="QQ"><a class="icon-pw-qq"></a></span>
+                        <span title="点击加入QQ群"><a class="icon-pw-users"></a></span>
                         <span title="邮箱" @click="jumpPage"><a target="_blank" href="mailto:1129638103@qq.com"
-                                                              class="icon-mail-alt"></a></span>
+                                                              class="icon-pw-mail-alt"></a></span>
                         <span title="Github" @click="jumpPage"><a target="_blank" href="https://github.com/lanniuniu"
-                                                                  class="icon-github-circled"></a></span>
+                                                                  class="icon-pw-github-circled"></a></span>
                         <span title="微博" @click="jumpPage"><a target="_blank" href="http://weibo.com/shijiujiange"
-                                                              class="icon-weibo"></a></span>
-                        <span title="日/夜间模式" @click="changeModes"><a class="icon-moon"></a></span>
+                                                              class="icon-pw-weibo"></a></span>
+                        <span title="日/夜间模式" @click="changeModes"><a class="icon-pw-moon"></a></span>
                     </h3>
                 </div>
             </div>
@@ -39,13 +39,13 @@
             //改变日夜间模式
             changeModes(event) {
                 let target = event.currentTarget.firstChild;
-                if (target.getAttribute('class') === 'icon-moon') {
+                if (target.getAttribute('class') === 'icon-pw-moon') {
                     // 改变为夜间模式
-                    target.setAttribute('class', 'icon-sun');
+                    target.setAttribute('class', 'icon-pw-sun');
                     document.querySelector("#cover").style.display = "block"
                 } else {
                     //改变为日间模式
-                    target.setAttribute('class', 'icon-moon');
+                    target.setAttribute('class', 'icon-pw-moon');
                     document.querySelector("#cover").style.display = "none"
                 }
             },

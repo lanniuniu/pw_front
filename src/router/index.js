@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import home from '@/components/home';
-import addBlog from '@/components/addBlog';
+import editBlog from '@/components/editBlog';
 
 Vue.use(Router);
 
@@ -14,9 +14,9 @@ export default new Router({
             component: home
         },
         {
-            path: '/blog/add',
-            name: 'addBlog',
-            component: addBlog,
+            path: '/blog/edit',
+            name: 'editBlog',
+            component: editBlog,
         }
     ]
 })

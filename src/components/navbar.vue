@@ -1,20 +1,20 @@
 <template>
     <nav id="nav">
-        <a href="#" class="brand">诗酒剑歌</a>
+        <a href="/" class="brand">诗酒剑歌</a>
         <div class="nav-list">
             <ul>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"> <span class="icon-home"></span>Home</a>
+                    <a class="nav-link" href="/"> <span class="icon-pw-home"></span>Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><span class="icon-doc"></span>Blog</a>
+                    <a class="nav-link" href="#"><span class="icon-pw-doc"></span>Blog</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><span class="icon-headphones"></span>Music</a>
+                    <a class="nav-link" href="#"><span class="icon-pw-headphones"></span>Music</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a href="#">
-                        <span class="icon-gamepad"></span>Game
+                        <span class="icon-pw-gamepad"></span>Game
                     </a>
                     <!--<div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
                     <!--<a class="dropdown-item" href="#">Action</a>-->
@@ -24,21 +24,23 @@
                 </li>
                 <li class="nav-item">
                     <a href="#">
-                        <span class="icon-info-circled"></span>About me
+                        <span class="icon-pw-info-circled"></span>About me
                     </a>
                 </li>
 
             </ul>
         </div>
         <div class="nav-behavior">
-            <label for="search"><span class="icon-search" title="搜索" @click="UISearch" id="searchBtn"></span>
+            <label for="search"><span class="icon-pw-search" title="搜索" @click="UISearch" id="searchBtn"></span>
                 <input type="search" id="search" placeholder="Search">
             </label>
-            <span v-if="isLogin" class="icon-login" title="登录" @click="openLoginModal"></span>
+            <span v-if="isLogin" class="icon-pw-login" title="登录" @click="openLoginModal"></span>
             <modal-component id="loginModal"></modal-component>
-            <div id="welcome" :class="isWelcome">welcome,&nbsp;<span id="name" class="tooltips" data-tooltips="tooltips" data-position="bottom">{{loginUsername}}</span></div>
+            <div id="welcome" :class="isWelcome">welcome,&nbsp;<span id="name" class="tooltips" data-tooltips="tooltips"
+                                                                     data-position="bottom">{{loginUsername}}</span>
+            </div>
         </div>
-        <news-tips-component :backgroundProp="newsTips.background" :msgProp="newsTips.msg"></news-tips-component>
+        <news-tips-component id="navNewsTips" :backgroundProp="newsTips.background" :msgProp="newsTips.msg"></news-tips-component>
         <tooltips-component id="user">
             <div id="userInfo">
                 <badge-component class="badge badge-info">用户信息</badge-component>
@@ -83,29 +85,29 @@
                 isAdmin: false,
             }
         },
-        mounted(){
+        mounted() {
             this.enterLogin();
             this.clickLogin();
             this.autoLoadData();
         },
-        computed:{
+        computed: {
             //是否登录
-            isLogin(){
+            isLogin() {
                 return !sessionStorage.getItem("user");
             },
             //登录的用户名
-            loginUsername(){
+            loginUsername() {
                 let user = sessionStorage.getItem("user");
-                if(user){
+                if (user) {
                     return JSON.parse(user).username;
-                }else {
+                } else {
                     return '';
                 }
             },
 
             //是否。。。
-            isWelcome(){
-                return sessionStorage.getItem("user")? 'inline-block':'none';
+            isWelcome() {
+                return sessionStorage.getItem("user") ? 'inline-block' : 'none';
             },
         },
         methods: {
@@ -123,11 +125,11 @@
                 })
             },
             //打开login框
-            openLoginModal(){
-                if (document.querySelector("#loginModal").style.display === 'none'||document.querySelector("#loginModal").style.display === ''){
+            openLoginModal() {
+                if (document.querySelector("#loginModal").style.display === 'none' || document.querySelector("#loginModal").style.display === '') {
                     document.querySelector("#loginModal").style.display = 'block';
                     document.querySelector("#username").focus();
-                }else {
+                } else {
                     document.querySelector("#loginModal").style.display = 'none';
                 }
             },
@@ -137,53 +139,58 @@
                 let params = {};
                 params.username = document.querySelector("#username").value.toString();
                 let password = document.querySelector("#password").value.toString();
-                params.csrfToken = this._getCookie('csrfToken');
-                params.token = this._getCookie('token');
-                params.ip = JSON.stringify(this._getClientIP());
-                params.encodePassword = CryptoJS.AES.encrypt(password, params.csrfToken).toString();
-                let self = this;
-                self.$http.post('http://localhost:7001/user/login', params).then(response => {
-                    let newsTips = document.querySelector(".newsTips");
-                    if (response.body.code === 200) {
-                        self.newsTips.background = 'success';
-                        self.newsTips.msg = response.body.msg;
-                        document.querySelector(".modal").style.display = 'none';
-                        document.querySelector(".newsTips").style.display = 'block';
-                        self.tooltips = response.body.user;
-                        sessionStorage.setItem("user", JSON.stringify(response.body.user));
-                        setTimeout(function () {
-                            newsTips.style.transform = 'scale(1) translate(-50%,-50%)';
-                        },10);
-                        setTimeout(function () {
-                            document.querySelector(".nav-behavior .icon-login").style.display = 'none';
-                            document.querySelector("#welcome").style.display = 'inline';
-                            document.querySelector("#name").innerHTML = `${response.body.user.username}`;
-                            newsTips.style.transform = 'scale(0) translate(-50%,-50%)';
-                            setTimeout(function () {
-                                newsTips.style.display = 'none';
-                            },500);
+                if (password && params.username) {
+                    params.csrfToken = this._getCookie('csrfToken');
+                    params.token = this._getCookie('token');
+                    params.ip = JSON.stringify(this._getClientIP());
+                    params.encodePassword = CryptoJS.AES.encrypt(password, params.csrfToken).toString();
+                    let self = this;
+                    self.$http.post('http://localhost:7001/user/login', params).then(response => {
+                        let newsTips = document.querySelector(".newsTips");
+                        if (response.body.code === 200) {
+                            self.newsTips.background = 'success';
+                            self.newsTips.msg = response.body.msg;
                             document.querySelector(".modal").style.display = 'none';
-                        }, 1000);
-                        //admin用户特殊处理
-                        if (response.body.user.username === 'admin') {
-                            self.isAdmin = true;
-                        }
-                    } else {
-                        self.newsTips.background = 'error';
-                        self.newsTips.msg = response.body.msg;
-                        newsTips.style.display = 'block';
-                        setTimeout(function () {
-                            newsTips.style.transform = 'scale(1) translate(-50%,-50%)';
-                        },10);
-                        setTimeout(function () {
-                            newsTips.style.transform = 'scale(0) translate(-50%,-50%)';
+                            document.querySelector(".newsTips").style.display = 'block';
+                            self.tooltips = response.body.user;
+                            sessionStorage.setItem("user", JSON.stringify(response.body.user));
                             setTimeout(function () {
-                                newsTips.style.display = 'none';
-                            },500)
-                        },1000);
+                                newsTips.style.transform = 'scale(1) translate(-50%,-50%)';
+                            }, 10);
+                            setTimeout(function () {
+                                document.querySelector(".nav-behavior .icon-pw-login").style.display = 'none';
+                                document.querySelector("#welcome").style.display = 'inline';
+                                document.querySelector("#name").innerHTML = `${response.body.user.username}`;
+                                newsTips.style.transform = 'scale(0) translate(-50%,-50%)';
+                                setTimeout(function () {
+                                    newsTips.style.display = 'none';
+                                }, 500);
+                                document.querySelector(".modal").style.display = 'none';
+                            }, 1000);
+                            //admin用户特殊处理
+                            if (response.body.user.username === 'admin') {
+                                self.isAdmin = true;
+                            }
+                        } else {
+                            self.newsTips.background = 'error';
+                            self.newsTips.msg = response.body.msg;
+                            newsTips.style.display = 'block';
+                            setTimeout(function () {
+                                newsTips.style.transform = 'scale(1) translate(-50%,-50%)';
+                            }, 10);
+                            setTimeout(function () {
+                                newsTips.style.transform = 'scale(0) translate(-50%,-50%)';
+                                setTimeout(function () {
+                                    newsTips.style.display = 'none';
+                                }, 500)
+                            }, 1000);
 
-                    }
-                });
+                        }
+                    });
+                }else {
+                    //用户名或密码为空
+                    this._newsTips('navNewsTips','error','用户名或密码均不能为空');
+                }
             },
 
 
@@ -207,16 +214,16 @@
             },
 
             //转到添加博客页面
-            locationToBlog(){
-                this.$router.push('/blog/add');
-                location.reload();
+            locationToBlog() {
+                this.$router.push('/blog/edit');
+                // location.reload();
             },
             //回车键登录
             enterLogin() {
                 const self = this;
                 document.addEventListener('keyup', function (event) {
                     if (event.key === 'Enter') {//按的回车键
-                        if (document.querySelector(".modal").style.display = 'block') {
+                        if (document.querySelector(".modal").style.display === 'block') {
                             self.login();
                         }
                     }
@@ -238,6 +245,29 @@
                     this.tooltips = JSON.parse(user);
                     this.isAdmin = JSON.parse(user).username === 'admin';
                 }
+            },
+
+            /**
+             * 显示newsTips框
+             * @param id String newsTips框的id
+             * @param type String newsTips框的类型
+             * @param msg String newsTips框的内容
+             * @private
+             */
+            _newsTips(id,type, msg) {
+                this.newsTips.background = type;
+                this.newsTips.msg = msg;
+                let newsTips = document.querySelector(`#${id}`);
+                newsTips.style.display = 'block';
+                setTimeout(function () {
+                    newsTips.style.transform = 'scale(1) translate(-50%,-50%)';
+                }, 10);
+                setTimeout(function () {
+                    newsTips.style.transform = 'scale(0) translate(-50%,-50%)';
+                    setTimeout(function () {
+                        newsTips.style.display = 'none';
+                    }, 500);
+                }, 1000);
             },
 
             //获取对应key的cookie值
@@ -271,8 +301,6 @@
     }
 
 
-
-
 </script>
 
 <style lang="less">
@@ -281,7 +309,7 @@
         background-color: #563d7c;
         height: 4rem;
         color: #cbbde2;
-        position: fixed;
+        position: sticky;
         width: 100rem;
         top: 0;
         box-shadow: 0 2px 5px #cbbde2;
@@ -322,7 +350,7 @@
                     margin-left: 2rem;
                 }
             }
-            a{
+            a {
                 font-size: 1.2rem;
                 span {
                     font-size: 1.4rem;
@@ -357,6 +385,7 @@
                 border: none;
                 padding: 0 0.5rem;
                 box-shadow: none;
+                box-sizing: border-box;
                 transition: box-shadow 0.15s ease-in-out;
             }
             #search:focus {
@@ -366,25 +395,27 @@
         }
 
         //欢迎
-        #welcome{
+        #welcome {
             font-size: 1.2rem;
-            #name{
+            #name {
                 font-size: 1.2rem;
                 color: #ffe484;
-                padding: 0 0.5rem;
+                padding: 0 0.6rem;
+                box-sizing: border-box;
             }
-            #name:hover{
+            #name:hover {
                 cursor: pointer;
             }
         }
-        .inline-block{
+        .inline-block {
             display: inline-block;
         }
-        .none{
+        .none {
             display: none;
         }
     }
 
+    //个人信息
     #user {
         position: fixed;
         //用户信息

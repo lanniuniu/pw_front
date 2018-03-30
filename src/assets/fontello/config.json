@@ -8,98 +8,92 @@
   "glyphs": [
     {
       "uid": "e82cedfa1d5f15b00c5a81c9bd731ea2",
-      "css": "info-circled",
-      "code": 59392,
+      "css": "pw-info-circled",
+      "code": 59801,
       "src": "fontawesome"
     },
     {
       "uid": "d7271d490b71df4311e32cdacae8b331",
-      "css": "home",
-      "code": 59393,
+      "css": "pw-home",
+      "code": 59800,
       "src": "fontawesome"
     },
     {
       "uid": "1b5a5d7b7e3c71437f5a26befdd045ed",
-      "css": "doc",
-      "code": 59394,
-      "src": "fontawesome"
-    },
-    {
-      "uid": "5e2ab018e3044337bcef5f7e94098ea1",
-      "css": "thumbs-up-alt",
-      "code": 61796,
+      "css": "pw-doc",
+      "code": 59799,
       "src": "fontawesome"
     },
     {
       "uid": "c5fd349cbd3d23e4ade333789c29c729",
-      "css": "eye",
-      "code": 59395,
+      "css": "pw-eye",
+      "code": 59798,
       "src": "fontawesome"
     },
     {
       "uid": "7480a298ce334eef70193895e799c3fd",
-      "css": "headphones",
-      "code": 59396,
+      "css": "pw-headphones",
+      "code": 59797,
       "src": "elusive"
     },
     {
       "uid": "0133387f2069a1b3168942b84d81dd3a",
-      "css": "gamepad",
-      "code": 61723,
+      "css": "pw-gamepad",
+      "code": 59796,
       "src": "fontawesome"
     },
     {
       "uid": "221947bea81f49a11b863c686a7bd235",
-      "css": "search",
-      "code": 59397,
+      "css": "pw-search",
+      "code": 59795,
       "src": "websymbols"
     },
     {
       "uid": "3a00327e61b997b58518bd43ed83c3df",
-      "css": "login",
-      "code": 59398,
+      "css": "pw-login",
+      "code": 59794,
       "src": "fontawesome"
     },
     {
       "uid": "657ff9fe5df74f1993937aa4b19cf909",
-      "css": "qq",
-      "code": 61910,
+      "css": "pw-qq",
+      "code": 59793,
       "src": "fontawesome"
     },
     {
       "uid": "ccc2329632396dc096bb638d4b46fb98",
-      "css": "mail-alt",
-      "code": 61664,
+      "css": "pw-mail-alt",
+      "code": 59792,
       "src": "fontawesome"
     },
     {
       "uid": "31972e4e9d080eaa796290349ae6c1fd",
-      "css": "users",
-      "code": 59399,
+      "css": "pw-users",
+      "code": 59785,
       "src": "fontawesome"
     },
     {
       "uid": "9854b94688e31450fc76aae4c2a45dff",
-      "css": "weibo",
-      "code": 61834,
+      "css": "pw-weibo",
+      "code": 59784,
       "src": "fontawesome"
     },
     {
       "uid": "0f6a2573a7b6df911ed199bb63717e27",
-      "css": "github-circled",
-      "code": 61595,
+      "css": "pw-github-circled",
+      "code": 59783,
       "src": "fontawesome"
     },
     {
       "uid": "0d03db7afd4857accf1821efdc8ea72b",
-      "css": "moon",
-      "code": 59400,
+      "css": "pw-moon",
+      "code": 59782,
       "src": "entypo"
     },
     {
       "uid": "95fb2e5fdd1ea7e4a420b6ed330e6b08",
-      "css": "sun",
-      "code": 59401,
+      "css": "pw-sun",
+      "code": 59781,
       "src": "meteocons"
     }
   ]
