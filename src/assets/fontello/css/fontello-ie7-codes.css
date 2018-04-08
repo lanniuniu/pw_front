@@ -1,4 +1,5 @@
 
+.icon-commenting { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe984;&nbsp;'); }
 .icon-pw-sun { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe985;&nbsp;'); }
 .icon-pw-moon { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe986;&nbsp;'); }
 .icon-pw-github-circled { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe987;&nbsp;'); }

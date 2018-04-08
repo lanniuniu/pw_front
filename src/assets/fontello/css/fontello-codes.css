@@ -1,4 +1,5 @@
 
+.icon-commenting:before { content: '\e984'; } /* '' */
 .icon-pw-sun:before { content: '\e985'; } /* '' */
 .icon-pw-moon:before { content: '\e986'; } /* '' */
 .icon-pw-github-circled:before { content: '\e987'; } /* '' */

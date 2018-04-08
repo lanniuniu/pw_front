@@ -25,4 +25,12 @@
         background-color: #17a2b8;
         color: white;
     }
+    .badge-light{
+        color: #212529;
+        background-color: #f8f9fa;
+    }
+    .badge-dark{
+        color: #fff;
+        background-color: #343a40;
+    }
 </style>

@@ -13,6 +13,7 @@ import newsTips from './components/publicComponent/newsTips';//引入消息通�
 import tooltips from './components/publicComponent/tooltips';//引入tooltips组件
 import badge from './components/publicComponent/badge';//引入badge组件
 import button from './components/publicComponent/button';//引入button组件
+import pagination from './components/publicComponent/pagination';//引入pagination组件
 import mavonEditor from 'mavon-editor';//引入mavon
 import 'mavon-editor/dist/css/index.css'//引入mavon css样式
 
@@ -26,6 +27,7 @@ Vue.component('news-tips-component',newsTips);
 Vue.component('tooltips-component',tooltips);
 Vue.component('badge-component',badge);
 Vue.component('button-component',button);
+Vue.component('pagination-component',pagination);
 Vue.use(fontello);
 Vue.use(Resource);
 Vue.use(mavonEditor);

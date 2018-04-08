@@ -95,6 +95,12 @@
       "css": "pw-sun",
       "code": 59781,
       "src": "meteocons"
+    },
+    {
+      "uid": "53c28626072159c49f33b71d67138ad9",
+      "css": "commenting",
+      "code": 59780,
+      "src": "fontawesome"
     }
   ]
 }

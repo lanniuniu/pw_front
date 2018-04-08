@@ -52,7 +52,7 @@
 
                         //小三角的位置
                         let tooltipsParentClientWidth = tooltipsParent.clientWidth;
-                        tooltipsTriangle.style.left = tooltipsParentClientWidth / 3 * 2 + "px";
+                        tooltipsTriangle.style.left = tooltipsParentClientWidth / 5 * 3 + "px";
                     });
                     //tooltips鼠标离开事件
                     tooltips[i].addEventListener("mouseout", function (event) {

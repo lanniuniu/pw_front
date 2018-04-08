@@ -48,6 +48,7 @@
         methods: {
             //保存时触发
             save(markdown, html) {
+                let params = {};
                 let title = document.querySelector("#title").value.toString();
                 let classify = document.querySelector("#classify").value.toString();
                 let tag = document.querySelector("#tag").value.toString();
@@ -58,15 +59,27 @@
                         //保存到本地
                         download(title,markdown)
                     }
-                    this.$http.post('/blog/add',html).then(response=>{
-                        // console.log()
+                    params.content = html;
+                    params.title = title;
+                    params.classify = classify;
+                    params.tag = tag;
+                    params.csrfToken = this._getCookie('csrfToken');
+                    let self = this;
+                    this.$http.post('http://localhost:7001/blog/add',params).then(response=>{
+                        if(response.body.code === 200){
+                            self. _newsTips('blogNewsTips', 'success', response.body.msg)
+                            setTimeout(function () {
+                                self.$router.push('/');
+                            },1500);
+                        }else {
+                            self. _newsTips('blogNewsTips', 'error', response.body.msg)
+                        }
                     })
                 } else {
-                    this._newsTips('blogNewsTips', 'error', '标题、分类、标签、博客不能为空');
+                    this._newsTips('blogNewsTips', 'error', '标题、分类、标签、博客内容不能为空');
                 }
 
             },
-
 
             /**
              * 显示newsTips框
@@ -89,6 +102,18 @@
                         newsTips.style.display = 'none';
                     }, 500);
                 }, 1000);
+            },
+
+            //获取cookie
+            _getCookie(key) {
+                let cookies = document.cookie;
+                let getKeyRegExp = new RegExp(key + "=[\\w-]*");
+                let getKey = cookies.match(getKeyRegExp);
+                if (!!getKey) {
+                    return getKey[0].split('=')[1];
+                } else {
+                    return '无法找到指定cookie'
+                }
             },
 
         }

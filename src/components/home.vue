@@ -1,8 +1,27 @@
 <template>
     <div id="home">
         <div id="leftMixed">
-
+            <div class="blog" v-for="blog in blogLists">
+                <div class="blog-content">
+                    <h2 class="blog-content-title"><span :data-_id="blog._id" title="查看博客">{{blog.title}}</span></h2>
+                    <p>{{blog.summary}}</p>
+                </div>
+                <div class="blog-footer">
+                    <div class="blog-footer-time">发布日期:{{blog.releaseDate}}</div>
+                    <div class="blog-footer-classify">分类:{{blog.classify}}</div>
+                    <div class="blog-footer-tag">标签:
+                        <badge-component class="badge badge-dark" :key="Math.random()" v-for="tag in blog.tag">{{tag}}
+                        </badge-component>
+                    </div>
+                    <div class="blog-footer-comment"><span class="icon-commenting" :data-_id="blog._id"
+                                                           title="评论"></span></div>
+                </div>
+            </div>
+            <pagination-component :page="pagination.page" :pageTotal="pagination.pageTotal"
+                                  @turnPage="list"></pagination-component>
         </div>
+        <news-tips-component id="homeTips" :backgroundProp="newsTips.background"
+                             :msgProp="newsTips.msg"></news-tips-component>
         <right-mixed-component></right-mixed-component>
     </div>
 </template>
@@ -13,23 +32,93 @@
         name: 'hello',
         data() {
             return {
-                articleLists: [//博客列表
-                    {},
-                ],
-
+                blogLists: [],//博客列表
+                newsTips: {//消息提示
+                    background: '',
+                    msg: '',
+                },
+                pagination: {//分页数据
+                    page: 21,
+                    pageTotal: 21,
+                },
             }
         },
         created() {
-
+            this.list();
         },
         mounted() {
 
         },
         computed: {},
         methods: {
+            //获取博客列表
+            list(params) {
+                let query = {};
+                if (!!params && !!params.page) {
+                    query.page = params.page;
+                }
+                query.csrfToken = this._getCookie('csrfToken');
 
-
-
+                let self = this;
+                this.$http.post('http://localhost:7001/blog/list', query).then((response) => {
+                    if (response.body.code === 200) {
+                        self.blogLists = response.body.data.data.map((value) => {
+                            let releaseDate = new Date(value.releaseDate);
+                            value.releaseDate = `${releaseDate.getFullYear()}年${releaseDate.getMonth() + 1}月${releaseDate.getDate()}日`;
+                            value.tag = JSON.parse(value.tag);
+                            let content = value.content;
+                            let summaryBigRegExp = new RegExp(/<div class="hljs-center">[\n]?<p>[\w ]+<\/p>/);
+                            let center = content.match(summaryBigRegExp);
+                            if (!!center) {
+                                let summaryMediumRegExp = new RegExp(/<p>[\w ]+<\/p>/);
+                                let pAll = center[0].match(summaryMediumRegExp);
+                                value.summary = pAll[0].replace('<p>', '').replace('</p>', '');
+                            } else {
+                                value.summary = '懒牛牛太懒了，连概括都忘记写了。(￣_,￣ )'
+                            }
+                            return value;
+                        });
+                        console.log(response.body)
+                        self.pagination.page = response.body.data.page;
+                        self.pagination.pageTotal = response.body.data.pageTotal;
+                    } else {
+                        self._newsTips('homeTips', 'error', '获取博客列表失败');
+                    }
+                })
+            },
+            //获取cookie
+            _getCookie(key) {
+                let cookies = document.cookie;
+                let getKeyRegExp = new RegExp(key + "=[\\w-]*");
+                let getKey = cookies.match(getKeyRegExp);
+                if (!!getKey) {
+                    return getKey[0].split('=')[1];
+                } else {
+                    return '无法找到指定cookie'
+                }
+            },
+            /**
+             * 显示newsTips框
+             * @param id String newsTips框的id
+             * @param type String newsTips框的类型
+             * @param msg String newsTips框的内容
+             * @private
+             */
+            _newsTips(id, type, msg) {
+                this.newsTips.background = type;
+                this.newsTips.msg = msg;
+                let newsTips = document.querySelector(`#${id}`);
+                newsTips.style.display = 'block';
+                setTimeout(function () {
+                    newsTips.style.transform = 'scale(1) translate(-50%,-50%)';
+                }, 10);
+                setTimeout(function () {
+                    newsTips.style.transform = 'scale(0) translate(-50%,-50%)';
+                    setTimeout(function () {
+                        newsTips.style.display = 'none';
+                    }, 500);
+                }, 1000);
+            },
         },
     }
 </script>
@@ -38,7 +127,7 @@
 <style lang="less">
     #home {
         width: 90em;
-        height: 200rem;
+        min-height: 50rem;
         margin: 1rem auto;
     }
 
@@ -48,8 +137,65 @@
         padding: 1rem;
         background-color: white;
         float: left;
-        height: 100rem;
         border-radius: 0.5rem;
+        box-sizing: border-box;
+        .blog {
+            display: flex;
+            border: 1px solid #6c757d;
+            box-sizing: border-box;
+            border-radius: .25rem;
+            margin-bottom: 1rem;
+            flex-direction: column;
+
+            .blog-content {
+                box-sizing: border-box;
+                padding: 1rem;
+                color: #343a40;
+
+                .blog-content-title {
+                    font-size: 2rem;
+                    font-weight: 500;
+                    margin-bottom: 0.5rem;
+                    line-height: 1;
+                    span {
+                        cursor: pointer;
+                    }
+                }
+            }
+
+            .blog-footer {
+                box-sizing: border-box;
+                background-color: rgba(0, 0, 0, .03);
+                border-bottom: 1px solid rgba(0, 0, 0, .125);
+                padding: .8rem 1rem;
+                display: inline-flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+
+                .blog-footer-time {
+                    flex: 2;
+                }
+                .blog-footer-classify {
+                    flex: 1;
+                }
+                .blog-footer-tag {
+                    flex: 2;
+                    > span {
+                        margin-right: 1px;
+                    }
+                }
+                .blog-footer-comment {
+                    flex: 1;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-end;
+                    span {
+                        cursor: pointer;
+                    }
+
+                }
+            }
+        }
     }
 
 </style>
