@@ -71,8 +71,8 @@
                             value.tag = JSON.parse(value.tag);
                             return value;
                         });
-                        self.table.header = ['标题','发布日期','分类'];
-                        self.table.index = ['title','releaseDate','classify'];
+                        self.table.header = ['标题','发布日期','分类','标签'];
+                        self.table.index = ['title','releaseDate','classify','tag'];
                         console.log(self.table);
                         self.pagination.page = response.body.data.page;
                         self.pagination.pageTotal = response.body.data.pageTotal;
@@ -270,13 +270,14 @@
             font-size: 1.5rem;
             display: inline;
             text-align: center;
-            line-height: 1.5;
+            line-height: 1.6;
             box-sizing: border-box;
             padding: 0 1rem;
-            background-clip: content-box;
+            margin-left: 1rem;
+            transition: transform 0.3s ease-in-out;
         }
         #search:hover{
-            background-color: #f6f6f6;
+            transform: scale(1.2);
         }
 
     }

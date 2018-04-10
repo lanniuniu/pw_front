@@ -9,6 +9,7 @@
         <tr v-for="value in data">
             <th v-for="(indexValue) in index">
                 <a v-if="indexValue==='title'" class="title" @click="redirect" :data-_id="value._id">{{value[indexValue]}}</a>
+                <badge-component v-else-if="indexValue==='tag'" v-bind:key="Math.random()" v-for="badgeValue in value[indexValue]" class="badge badge-dark">{{badgeValue}}</badge-component>
                 <span v-else>{{value[indexValue]}}</span>
             </th>
         </tr>
@@ -64,7 +65,7 @@
                 border-bottom: 2px solid #dee2e6;
                 padding: .75rem;
                 border-top: 1px solid #dee2e6;
-                font-weight: 700;
+                font-weight: 600;
                 font-size: 1.5rem;
             }
         }
@@ -111,6 +112,9 @@
             }
             tr:nth-child(10){
                 background-color: teal;
+            }
+            .badge{
+                margin-right: 1px;
             }
         }
     }
