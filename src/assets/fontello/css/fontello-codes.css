@@ -1,4 +1,6 @@
 
+.icon-folder-open:before { content: '\e982'; } /* '' */
+.icon-calendar:before { content: '\e983'; } /* '' */
 .icon-commenting:before { content: '\e984'; } /* '' */
 .icon-pw-sun:before { content: '\e985'; } /* '' */
 .icon-pw-moon:before { content: '\e986'; } /* '' */

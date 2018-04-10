@@ -101,6 +101,18 @@
       "css": "commenting",
       "code": 59780,
       "src": "fontawesome"
+    },
+    {
+      "uid": "531bc468eecbb8867d822f1c11f1e039",
+      "css": "calendar",
+      "code": 59779,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "c95735c17a10af81448c7fed98a04546",
+      "css": "folder-open",
+      "code": 59778,
+      "src": "fontawesome"
     }
   ]
 }

@@ -1,38 +1,46 @@
 <template>
-    <div id="home">
-        <div id="leftMixed">
-            <div class="blog" v-for="blog in blogLists">
-                <div class="blog-content">
-                    <h2 class="blog-content-title"><span :data-_id="blog._id" title="查看博客" @click="redirect">{{blog.title}}</span></h2>
-                    <p>{{blog.summary}}</p>
+    <div id="blogLists">
+        <div id="blogInfo">
+            <div class="input-group">
+                <div class="preInput">
+                    <span>标题</span>
                 </div>
-                <div class="blog-footer">
-                    <div class="blog-footer-time">发布日期:{{blog.releaseDate}}</div>
-                    <div class="blog-footer-classify">分类:{{blog.classify}}</div>
-                    <div class="blog-footer-tag">标签:
-                        <badge-component class="badge badge-dark" :key="Math.random()" v-for="tag in blog.tag">{{tag}}
-                        </badge-component>
-                    </div>
-                    <div class="blog-footer-comment"><span class="icon-commenting" :data-_id="blog._id"
-                                                           title="评论"></span></div>
-                </div>
+                <input type="text" placeholder="输入标题" id="title">
             </div>
+            <div class="input-group">
+                <div class="preInput">
+                    <span>分类</span>
+                </div>
+                <input type="text" placeholder="输入分类" id="classify">
+            </div>
+            <div class="input-group">
+                <div class="preInput">
+                    <span>标签</span>
+                </div>
+                <input type="text" placeholder="输入标签，以空格间隔" id="tag">
+            </div>
+            <span class="icon-pw-search" id="search"></span>
+        </div>
+        <div id="blogList">
+            <table-component :data="table.data" :header="table.header" :index="table.index"></table-component>
             <pagination-component :page="pagination.page" :pageTotal="pagination.pageTotal"
                                   @turnPage="list"></pagination-component>
         </div>
-        <news-tips-component id="homeTips" :backgroundProp="newsTips.background"
+        <news-tips-component id="blogListTips" :backgroundProp="newsTips.background"
                              :msgProp="newsTips.msg"></news-tips-component>
-        <right-mixed-component></right-mixed-component>
     </div>
 </template>
 
 <script>
-
     export default {
-        name: 'hello',
-        data() {
-            return {
-                blogLists: [],//博客列表
+        name: "blog-list",
+        data(){
+            return{
+                table: {//博客表格
+                    data:[],//数据
+                    header:[],//标题
+                    index:[],//索引
+                },
                 newsTips: {//消息提示
                     background: '',
                     msg: '',
@@ -43,14 +51,10 @@
                 },
             }
         },
-        created() {
+        created(){
             this.list();
         },
-        mounted() {
-
-        },
-        computed: {},
-        methods: {
+        methods:{
             //获取博客列表
             list(params) {
                 let query = {};
@@ -58,34 +62,26 @@
                     query.page = params.page;
                 }
                 query.csrfToken = this._getCookie('csrfToken');
-
                 let self = this;
                 this.$http.post('http://localhost:7001/blog/list', query).then((response) => {
                     if (response.body.code === 200) {
-                        self.blogLists = response.body.data.data.map((value) => {
+                        self.table.data = response.body.data.data.map((value) => {
                             let releaseDate = new Date(value.releaseDate);
-                            value.releaseDate = `${releaseDate.getFullYear()}年${releaseDate.getMonth() + 1}月${releaseDate.getDate()}日`;
+                            value.releaseDate = `${releaseDate.getFullYear()}/${releaseDate.getMonth() + 1}/${releaseDate.getDate()}`;
                             value.tag = JSON.parse(value.tag);
-                            let content = value.content;
-                            let summaryBigRegExp = new RegExp(/<div class="hljs-center">[\n]?<p>[\w ]+<\/p>/);
-                            let center = content.match(summaryBigRegExp);
-                            if (!!center) {
-                                let summaryMediumRegExp = new RegExp(/<p>[\w ]+<\/p>/);
-                                let pAll = center[0].match(summaryMediumRegExp);
-                                value.summary = pAll[0].replace('<p>', '').replace('</p>', '');
-                            } else {
-                                value.summary = '懒牛牛太懒了，连概括都忘记写了。(￣_,￣ )'
-                            }
                             return value;
                         });
-                        console.log(response.body)
+                        self.table.header = ['标题','发布日期','分类'];
+                        self.table.index = ['title','releaseDate','classify'];
+                        console.log(self.table);
                         self.pagination.page = response.body.data.page;
                         self.pagination.pageTotal = response.body.data.pageTotal;
                     } else {
-                        self._newsTips('homeTips', 'error', '获取博客列表失败');
+                        self._newsTips('blogListTips', 'error', '获取博客列表失败');
                     }
                 })
             },
+
             //跳转博客详情
             redirect(event){
                 this.$router.push('/blog/detail/_id='+event.currentTarget.getAttribute('data-_id'))
@@ -129,18 +125,19 @@
     }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="less">
-    #home {
-        width: 90em;
-        min-height: 50rem;
+<style scoped lang="less">
+    #blogLists{
+        width: 80rem;
         margin: 1rem auto;
+        min-height: 50rem;
     }
 
-    //左边
-    #leftMixed {
-        width: 56.5rem;
+    /*博客列表*/
+    #blogList {
+        width: 80rem;
         padding: 1rem;
+        min-height: 20rem;
+        margin-bottom: 1rem;
         background-color: white;
         float: left;
         border-radius: 0.5rem;
@@ -202,6 +199,86 @@
                 }
             }
         }
+    }
+    //筛选项
+    #blogInfo {
+        box-sizing: border-box;
+        padding: 1rem;
+        background-color: white;
+        display: flex;
+
+        .input-group {
+            display: inline-flex;
+            width: 25rem;
+            box-sizing: border-box;
+            align-items: stretch;
+            flex-wrap: wrap;
+            margin-left: 0.4rem;
+            flex: 3;
+
+            .preInput {
+                display: flex;
+                box-sizing: border-box;
+                margin-right: -1px;
+                span {
+                    display: flex;
+                    align-items: center;
+                    padding: .375rem .75rem;
+                    margin-bottom: 0;
+                    font-size: 1rem;
+                    font-weight: 400;
+                    line-height: 1.5;
+                    color: #495057;
+                    text-align: center;
+                    white-space: nowrap;
+                    background-color: #e9ecef;
+                    border: 1px solid #ced4da;
+                    border-radius: .25rem;
+                    border-top-right-radius: 0;
+                    border-bottom-right-radius: 0;
+                }
+            }
+            input {
+                position: relative;
+                flex: 1 1 auto;
+                width: 1%;
+                margin-bottom: 0;
+                display: block;
+                padding: .375rem .75rem;
+                font-size: 1rem;
+                line-height: 1.5;
+                color: #495057;
+                background-color: #fff;
+                background-clip: padding-box;
+                border: 1px solid #ced4da;
+                border-radius: .25rem;
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+                overflow: visible;
+                transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+            }
+            input:focus {
+                color: #495057;
+                background-color: #fff;
+                border-color: #80bdff;
+                outline: 0;
+                box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
+            }
+        }
+        #search{
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: inline;
+            text-align: center;
+            line-height: 1.5;
+            box-sizing: border-box;
+            padding: 0 1rem;
+            background-clip: content-box;
+        }
+        #search:hover{
+            background-color: #f6f6f6;
+        }
+
     }
 
 </style>

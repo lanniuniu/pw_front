@@ -7,20 +7,15 @@
                     <a class="nav-link" href="/"> <span class="icon-pw-home"></span>Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><span class="icon-pw-doc"></span>Blog</a>
+                    <a class="nav-link" href="/blog/list"><span class="icon-pw-doc"></span>Blog</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><span class="icon-pw-headphones"></span>Music</a>
+                    <a class="nav-link" @click="toDo"><span class="icon-pw-headphones"></span>Music</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a href="#">
+                <li class="nav-item">
+                    <a @click="toDo">
                         <span class="icon-pw-gamepad"></span>Game
                     </a>
-                    <!--<div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
-                    <!--<a class="dropdown-item" href="#">Action</a>-->
-                    <!--<a class="dropdown-item" href="#">Another action</a>-->
-                    <!--<a class="dropdown-item" href="#">Something else here</a>-->
-                    <!--</div>-->
                 </li>
                 <li class="nav-item">
                     <a href="#">
@@ -218,6 +213,12 @@
                 this.$router.push('/blog/edit');
                 // location.reload();
             },
+
+            //即将开放功能
+            toDo(){
+                window.alert('即将开放，敬请期待！');
+            },
+
             //回车键登录
             enterLogin() {
                 const self = this;
@@ -321,6 +322,7 @@
         }
         a:hover {
             color: #fff;
+            cursor: pointer;
         }
         //标志
         .brand {

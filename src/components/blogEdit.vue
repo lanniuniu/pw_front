@@ -38,8 +38,6 @@
                     background: '',//背景色
                     msg: '',//消息内容
                 },
-
-
             }
         },
         mounted() {

@@ -51,6 +51,15 @@
         },
         watch:{
             page(){
+                this.ready();
+            },
+        },
+        mounted(){
+            this.ready();
+        },
+        methods:{
+            // 准备工作
+            ready(){
                 let pagination = document.querySelector(".pagination").children;
                 if (this.page === 1) {
                     pagination[0].className += ' disabled';
@@ -60,8 +69,6 @@
                 }
                 pagination[this.page % 10].className += ' current'
             },
-        },
-        methods:{
             // 上一页
             previous(event){
                 if(this.page>1 && !event.currentTarget.parentNode.className.includes('disabled')){
