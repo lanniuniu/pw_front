@@ -27,6 +27,10 @@
                 type: Number,
                 required: true,
             },
+            counter:{//共多少项
+                type: Number,
+                required: true,
+            }
         },
         data() {
             return {}
@@ -34,7 +38,7 @@
         computed: {
             //分页信息
             info() {
-                return `当前第${this.page}页,共${this.pageTotal}页`;
+                return `当前第${this.page}页,共${this.counter}项`;
             },
             //分页——显示的页总数
             pageCount() {

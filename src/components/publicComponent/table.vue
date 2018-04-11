@@ -1,5 +1,5 @@
 <template>
-    <table>
+    <table v-if="data.length!==0">
         <thead>
         <tr>
             <th v-for="value in header">{{value}}</th>
@@ -15,6 +15,9 @@
         </tr>
         </tbody>
     </table>
+    <div v-else id="noData">
+        暂无列表数据
+    </div>
 </template>
 
 <script>
@@ -117,5 +120,10 @@
                 margin-right: 1px;
             }
         }
+    }
+
+    #noData{
+        padding: 3rem;
+        text-align: center;
     }
 </style>

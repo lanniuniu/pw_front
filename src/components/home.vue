@@ -17,7 +17,7 @@
                                                            title="评论"></span></div>
                 </div>
             </div>
-            <pagination-component :page="pagination.page" :pageTotal="pagination.pageTotal"
+            <pagination-component :page="pagination.page" :pageTotal="pagination.pageTotal" :counter="pagination.counter"
                                   @turnPage="list"></pagination-component>
         </div>
         <news-tips-component id="homeTips" :backgroundProp="newsTips.background"
@@ -40,6 +40,7 @@
                 pagination: {//分页数据
                     page: 1,
                     pageTotal: 1,
+                    counter:1,
                 },
             }
         },
@@ -78,9 +79,9 @@
                             }
                             return value;
                         });
-                        console.log(response.body)
                         self.pagination.page = response.body.data.page;
                         self.pagination.pageTotal = response.body.data.pageTotal;
+                        self.pagination.counter = response.body.data.counter;
                     } else {
                         self._newsTips('homeTips', 'error', '获取博客列表失败');
                     }

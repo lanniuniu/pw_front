@@ -3,27 +3,24 @@
         <div id="blogInfo">
             <div class="input-group">
                 <div class="preInput">
-                    <span>标题</span>
+                    <span>关键字</span>
                 </div>
-                <input type="text" placeholder="输入标题" id="title">
+                <input type="text" placeholder="输入标题、标签" id="keywords">
             </div>
             <div class="input-group">
                 <div class="preInput">
                     <span>分类</span>
                 </div>
-                <input type="text" placeholder="输入分类" id="classify">
+                <select name="classify" id="classify">
+                    <option value="">选择分类</option>
+                    <option v-for="value in classify" :value="value">{{value}}</option>
+                </select>
             </div>
-            <div class="input-group">
-                <div class="preInput">
-                    <span>标签</span>
-                </div>
-                <input type="text" placeholder="输入标签，以空格间隔" id="tag">
-            </div>
-            <span class="icon-pw-search" id="search"></span>
+            <span class="icon-pw-search" id="search" @click="list"></span>
         </div>
         <div id="blogList">
             <table-component :data="table.data" :header="table.header" :index="table.index"></table-component>
-            <pagination-component :page="pagination.page" :pageTotal="pagination.pageTotal"
+            <pagination-component :page="pagination.page" :pageTotal="pagination.pageTotal" :counter="pagination.counter"
                                   @turnPage="list"></pagination-component>
         </div>
         <news-tips-component id="blogListTips" :backgroundProp="newsTips.background"
@@ -34,12 +31,12 @@
 <script>
     export default {
         name: "blog-list",
-        data(){
-            return{
+        data() {
+            return {
                 table: {//博客表格
-                    data:[],//数据
-                    header:[],//标题
-                    index:[],//索引
+                    data: [],//数据
+                    header: [],//标题
+                    index: [],//索引
                 },
                 newsTips: {//消息提示
                     background: '',
@@ -48,18 +45,29 @@
                 pagination: {//分页数据
                     page: 1,
                     pageTotal: 1,
+                    counter:1,
                 },
+                classify: [],//分类数据
             }
         },
-        created(){
+        mounted() {
             this.list();
+            this.getClassify();
         },
-        methods:{
+        methods: {
             //获取博客列表
             list(params) {
                 let query = {};
                 if (!!params && !!params.page) {
                     query.page = params.page;
+                }
+                let keywords = document.querySelector("#keywords").value;
+                let classify = document.querySelector("#classify").value;
+                if (!!keywords) {
+                    query.keywords = keywords;
+                }
+                if (!!classify) {
+                    query.classify = classify;
                 }
                 query.csrfToken = this._getCookie('csrfToken');
                 let self = this;
@@ -71,20 +79,32 @@
                             value.tag = JSON.parse(value.tag);
                             return value;
                         });
-                        self.table.header = ['标题','发布日期','分类','标签'];
-                        self.table.index = ['title','releaseDate','classify','tag'];
-                        console.log(self.table);
+                        self.table.header = ['标题', '发布日期', '分类', '标签'];
+                        self.table.index = ['title', 'releaseDate', 'classify', 'tag'];
                         self.pagination.page = response.body.data.page;
                         self.pagination.pageTotal = response.body.data.pageTotal;
+                        self.pagination.counter = response.body.data.counter;
                     } else {
                         self._newsTips('blogListTips', 'error', '获取博客列表失败');
                     }
                 })
             },
 
+            //获取所有分类
+            getClassify() {
+                let self = this;
+                this.$http.get('http://localhost:7001/blog/classify').then((res) => {
+                    if (res.body.code === 200) {
+                        self.classify = res.body.data;
+                    } else {
+                        self._newsTips('blogListTips', 'error', '获取分类列表失败');
+                    }
+                });
+            },
+
             //跳转博客详情
-            redirect(event){
-                this.$router.push('/blog/detail/_id='+event.currentTarget.getAttribute('data-_id'))
+            redirect(event) {
+                this.$router.push('/blog/detail/_id=' + event.currentTarget.getAttribute('data-_id'))
             },
 
             //获取cookie
@@ -126,13 +146,13 @@
 </script>
 
 <style scoped lang="less">
-    #blogLists{
+    #blogLists {
         width: 80rem;
         margin: 1rem auto;
         min-height: 50rem;
     }
 
-    /*博客列表*/
+    //博客列表
     #blogList {
         width: 80rem;
         padding: 1rem;
@@ -200,10 +220,11 @@
             }
         }
     }
+
     //筛选项
     #blogInfo {
         box-sizing: border-box;
-        padding: 1rem;
+        padding: 1rem 10rem;
         background-color: white;
         display: flex;
 
@@ -264,20 +285,46 @@
                 outline: 0;
                 box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
             }
+
+            select {
+                position: relative;
+                flex: 1 1 auto;
+                width: 1%;
+                margin-bottom: 0;
+                display: block;
+                padding: .375rem .75rem;
+                font-size: 1rem;
+                line-height: 1.5;
+                color: #495057;
+                background-color: #fff;
+                background-clip: padding-box;
+                border: 1px solid #ced4da;
+                border-radius: .25rem;
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+                overflow: visible;
+                transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+            }
+            select:focus {
+                color: #495057;
+                background-color: #fff;
+                border-color: #80bdff;
+                outline: 0;
+                box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
+            }
         }
-        #search{
+        #search {
             cursor: pointer;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             display: inline;
             text-align: center;
-            line-height: 1.6;
             box-sizing: border-box;
-            padding: 0 1rem;
+            padding: 0.5rem 1rem;
             margin-left: 1rem;
             transition: transform 0.3s ease-in-out;
         }
-        #search:hover{
-            transform: scale(1.2);
+        #search:hover {
+            transform: scale(1.5);
         }
 
     }

@@ -20,7 +20,7 @@
                 <input type="text" placeholder="输入标签，以空格间隔" id="tag">
             </div>
         </div>
-        <mavon-editor id="editor" v-model="value" @save="save"/>
+        <mavon-editor id="editor" v-model="value" @save="save" @change="caching"/>
         <news-tips-component id="blogNewsTips" :backgroundProp="newsTips.background"
                              :msgProp="newsTips.msg"></news-tips-component>
     </div>
@@ -40,8 +40,11 @@
                 },
             }
         },
-        mounted() {
-
+        created(){
+            let markdown = JSON.parse(localStorage.getItem('pw'));
+            if(!!markdown){
+                this.value = markdown
+            }
         },
         methods: {
             //保存时触发
@@ -77,6 +80,11 @@
                     this._newsTips('blogNewsTips', 'error', '标题、分类、标签、博客内容不能为空');
                 }
 
+            },
+
+            //缓存
+            caching(markdown){
+                localStorage.setItem('pw',JSON.stringify(markdown));
             },
 
             /**

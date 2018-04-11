@@ -26,7 +26,11 @@
             </ul>
         </div>
         <div class="nav-behavior">
-            <label for="search"><span class="icon-pw-search" title="搜索" @click="UISearch" id="searchBtn"></span>
+            <!--todo-->
+            <!--<label for="search"><span class="icon-pw-search" title="搜索" @click="UISearch" id="searchBtn"></span>-->
+            <!--<input type="search" id="search" placeholder="Search">-->
+            <!--</label>-->
+            <label for="search"><span class="icon-pw-search" title="搜索" @click="toDo" id="searchBtn"></span>
                 <input type="search" id="search" placeholder="Search">
             </label>
             <span v-if="isLogin" class="icon-pw-login" title="登录" @click="openLoginModal"></span>
@@ -35,7 +39,8 @@
                                                                      data-position="bottom">{{loginUsername}}</span>
             </div>
         </div>
-        <news-tips-component id="navNewsTips" :backgroundProp="newsTips.background" :msgProp="newsTips.msg"></news-tips-component>
+        <news-tips-component id="navNewsTips" :backgroundProp="newsTips.background"
+                             :msgProp="newsTips.msg"></news-tips-component>
         <tooltips-component id="user">
             <div id="userInfo">
                 <badge-component class="badge badge-info">用户信息</badge-component>
@@ -182,9 +187,9 @@
 
                         }
                     });
-                }else {
+                } else {
                     //用户名或密码为空
-                    this._newsTips('navNewsTips','error','用户名或密码均不能为空');
+                    this._newsTips('navNewsTips', 'error', '用户名或密码均不能为空');
                 }
             },
 
@@ -215,7 +220,7 @@
             },
 
             //即将开放功能
-            toDo(){
+            toDo() {
                 window.alert('即将开放，敬请期待！');
             },
 
@@ -255,7 +260,7 @@
              * @param msg String newsTips框的内容
              * @private
              */
-            _newsTips(id,type, msg) {
+            _newsTips(id, type, msg) {
                 this.newsTips.background = type;
                 this.newsTips.msg = msg;
                 let newsTips = document.querySelector(`#${id}`);
@@ -329,7 +334,7 @@
             font-weight: 900;
             font-size: 2.3rem;
             line-height: 4rem;
-            width: 20rem;
+            width: 25rem;
             text-align: center;
             display: block;
             float: left;
@@ -362,7 +367,7 @@
 
         //操作栏
         .nav-behavior {
-            width: 30rem;
+            width: 25rem;
             height: 4rem;
             text-align: center;
             line-height: 4rem;
