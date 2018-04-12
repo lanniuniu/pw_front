@@ -64,12 +64,14 @@
                     params.title = title;
                     params.classify = classify;
                     params.tag = tag;
+
                     params.csrfToken = this._getCookie('csrfToken');
                     let self = this;
                     this.$http.post('http://localhost:7001/blog/add',params).then(response=>{
                         if(response.body.code === 200){
-                            self. _newsTips('blogNewsTips', 'success', response.body.msg)
+                            self. _newsTips('blogNewsTips', 'success', response.body.msg);
                             setTimeout(function () {
+                                localStorage.removeItem('pw');
                                 self.$router.push('/');
                             },1500);
                         }else {
