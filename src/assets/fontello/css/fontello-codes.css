@@ -1,4 +1,5 @@
 
+.icon-rocket:before { content: '\e981'; } /* '' */
 .icon-folder-open:before { content: '\e982'; } /* '' */
 .icon-calendar:before { content: '\e983'; } /* '' */
 .icon-commenting:before { content: '\e984'; } /* '' */

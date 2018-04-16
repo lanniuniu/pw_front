@@ -14,7 +14,7 @@
                         </badge-component>
                     </div>
                     <div class="blog-footer-comment"><span class="icon-commenting" :data-_id="blog._id"
-                                                           title="评论"></span></div>
+                                                           title="评论" @click="toDo"></span></div>
                 </div>
             </div>
             <pagination-component :page="pagination.page" :pageTotal="pagination.pageTotal" :counter="pagination.counter"
@@ -42,6 +42,7 @@
                     pageTotal: 1,
                     counter:1,
                 },
+                mode:'day',//日夜间模式
             }
         },
         created() {
@@ -61,7 +62,7 @@
                 query.csrfToken = this._getCookie('csrfToken');
 
                 let self = this;
-                this.$http.post('/blog/list', query).then((response) => {
+                this.$http.post('http://localhost:7001/blog/list', query).then((response) => {
                     if (response.body.code === 200) {
                         self.blogLists = response.body.data.data.map((value) => {
                             let releaseDate = new Date(value.releaseDate);
@@ -90,6 +91,10 @@
             //跳转博客详情
             redirect(event){
                 this.$router.push('/blog/detail/_id='+event.currentTarget.getAttribute('data-_id'))
+            },
+            //即将开放功能
+            toDo() {
+                window.alert('即将开放，敬请期待！');
             },
 
             //获取cookie

@@ -10,15 +10,15 @@
                     <h1>懒牛牛</h1>
                     <h4>一篇诗，一斗酒，一曲长歌，一剑天涯</h4>
                     <h3>
-                        <span title="QQ"><a class="icon-pw-qq"></a></span>
-                        <span title="点击加入QQ群"><a class="icon-pw-users"></a></span>
+                        <span title="点击加我QQ（来者注明原因）"><a class="icon-pw-qq" @click="addQQ"></a></span>
+                        <span title="点击加入QQ群（来者注明原因）"><a class="icon-pw-users" target="_blank" href="https://jq.qq.com/?_wv=1027&k=5g8X2Ap"></a></span>
                         <span title="邮箱" @click="jumpPage"><a target="_blank" href="mailto:1129638103@qq.com"
                                                               class="icon-pw-mail-alt"></a></span>
                         <span title="Github" @click="jumpPage"><a target="_blank" href="https://github.com/lanniuniu"
                                                                   class="icon-pw-github-circled"></a></span>
                         <span title="微博" @click="jumpPage"><a target="_blank" href="http://weibo.com/shijiujiange"
                                                               class="icon-pw-weibo"></a></span>
-                        <span title="日/夜间模式" @click="changeModes"><a class="icon-pw-moon"></a></span>
+                        <span title="日/夜间模式" @click="changeModes"><a :class="modeIcon"></a></span>
                     </h3>
                 </div>
             </div>
@@ -31,6 +31,16 @@
 <script>
     export default {
         name: "right-mixed",
+        computed:{
+            modeIcon(){
+                let mode = sessionStorage.getItem('mode');
+                if(mode){
+                    return mode==='night'?'icon-pw-sun':'icon-pw-moon';
+                }else {
+                    return 'icon-pw-moon'
+                }
+            },
+        },
         methods: {
             //跳转到子节点所对应链接
             jumpPage(event) {
@@ -41,13 +51,19 @@
                 let target = event.currentTarget.firstChild;
                 if (target.getAttribute('class') === 'icon-pw-moon') {
                     // 改变为夜间模式
+                    sessionStorage.setItem('mode','night');
                     target.setAttribute('class', 'icon-pw-sun');
                     document.querySelector("#cover").style.display = "block"
                 } else {
                     //改变为日间模式
                     target.setAttribute('class', 'icon-pw-moon');
+                    sessionStorage.setItem('mode','day');
                     document.querySelector("#cover").style.display = "none"
                 }
+            },
+            //添加qq
+            addQQ(){
+                window.location.href='tencent://message/?uin=1129638103&Site=诗酒剑歌&Menu=yes'
             },
         },
     }

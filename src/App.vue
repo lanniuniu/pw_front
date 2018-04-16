@@ -12,8 +12,10 @@
         mounted(){
             adapt();
             this.titleChange();
+            this.mode();
         },
         methods:{
+            //title变换
             titleChange(){
                 window.addEventListener("focus",function () {
                     document.querySelector("title").innerHTML = "欢迎回来（●＾∀＾●）";
@@ -29,6 +31,14 @@
                     document.querySelector("title").innerHTML = "来找我呀！=￣ω￣= ";
                 });
             },
+            // 日夜间模式
+            mode(){
+                if(sessionStorage.getItem("mode")){
+                    document.querySelector("#cover").style.display = sessionStorage.getItem("mode")==='night'?'block':'none';
+                }else {
+                    document.querySelector("#cover").style.display = 'none';
+                }
+            }
         },
     }
 </script>

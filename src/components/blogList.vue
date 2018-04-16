@@ -71,7 +71,7 @@
                 }
                 query.csrfToken = this._getCookie('csrfToken');
                 let self = this;
-                this.$http.post('/blog/list', query).then((response) => {
+                this.$http.post('http://localhost:7001/blog/list', query).then((response) => {
                     if (response.body.code === 200) {
                         self.table.data = response.body.data.data.map((value) => {
                             let releaseDate = new Date(value.releaseDate);
@@ -93,7 +93,7 @@
             //获取所有分类
             getClassify() {
                 let self = this;
-                this.$http.get('/blog/classify').then((res) => {
+                this.$http.get('http://localhost:7001/blog/classify').then((res) => {
                     if (res.body.code === 200) {
                         self.classify = res.body.data;
                     } else {

@@ -59,13 +59,16 @@ export default new Router({
             name: 'blogEdit',
             component: blogEdit,
             beforeEnter: (to, from, next) => {
-                if (to.name === 'blogEdit' && to.fullPath === '/blog/edit') {
+                let user = JSON.parse(sessionStorage.getItem('user'));
+                if (to.name === 'blogEdit' && to.fullPath === '/blog/edit' && user && user.username === 'admin') {
                     let clientInfo = _getClientInfo(navigator.userAgent);
                     if (config.whiteBrowser.includes(clientInfo.browser) && config.whiteSystem.includes(clientInfo.system)) {
                         next();
                     } else {
                         location.href = '/'
                     }
+                }else {
+                    location.href = '/'
                 }
             },
         },

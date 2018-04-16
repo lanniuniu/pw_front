@@ -113,6 +113,12 @@
       "css": "folder-open",
       "code": 59778,
       "src": "fontawesome"
+    },
+    {
+      "uid": "8aa99bc60f3553bb3e31b73dd6e744c8",
+      "css": "rocket",
+      "code": 59777,
+      "src": "fontawesome"
     }
   ]
 }
