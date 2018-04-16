@@ -66,8 +66,9 @@
                     params.tag = tag;
 
                     params.csrfToken = this._getCookie('csrfToken');
+                    params.ip = returnCitySN;
                     let self = this;
-                    this.$http.post('http://localhost:7001/blog/add',params).then(response=>{
+                    this.$http.post('/blog/add',params).then(response=>{
                         if(response.body.code === 200){
                             self. _newsTips('blogNewsTips', 'success', response.body.msg);
                             setTimeout(function () {

@@ -61,7 +61,7 @@
                 query.csrfToken = this._getCookie('csrfToken');
 
                 let self = this;
-                this.$http.post('http://localhost:7001/blog/list', query).then((response) => {
+                this.$http.post('/blog/list', query).then((response) => {
                     if (response.body.code === 200) {
                         self.blogLists = response.body.data.data.map((value) => {
                             let releaseDate = new Date(value.releaseDate);

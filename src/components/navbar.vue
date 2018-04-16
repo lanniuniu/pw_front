@@ -145,7 +145,7 @@
                     params.ip = JSON.stringify(this._getClientIP());
                     params.encodePassword = CryptoJS.AES.encrypt(password, params.csrfToken).toString();
                     let self = this;
-                    self.$http.post('http://localhost:7001/user/login', params).then(response => {
+                    self.$http.post('/user/login', params).then(response => {
                         let newsTips = document.querySelector(".newsTips");
                         if (response.body.code === 200) {
                             self.newsTips.background = 'success';

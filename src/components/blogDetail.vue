@@ -49,7 +49,7 @@
                 params._id = this.$route.params._id.split('=')[1];
                 params.csrfToken = this._getCookie('csrfToken');
                 let self = this;
-                this.$http.post('http://localhost:7001/blog/detail', params).then((response) => {
+                this.$http.post('/blog/detail', params).then((response) => {
                     if (response.body.code === 200) {
                         self.render(response.body.data)
                     }else {
