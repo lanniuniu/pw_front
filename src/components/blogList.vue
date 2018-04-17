@@ -20,7 +20,8 @@
         </div>
         <div id="blogList">
             <table-component :data="table.data" :header="table.header" :index="table.index"></table-component>
-            <pagination-component :page="pagination.page" :pageTotal="pagination.pageTotal" :counter="pagination.counter"
+            <pagination-component :page="pagination.page" :pageTotal="pagination.pageTotal"
+                                  :counter="pagination.counter"
                                   @turnPage="list"></pagination-component>
         </div>
         <news-tips-component id="blogListTips" :backgroundProp="newsTips.background"
@@ -45,7 +46,7 @@
                 pagination: {//分页数据
                     page: 1,
                     pageTotal: 1,
-                    counter:1,
+                    counter: 1,
                 },
                 classify: [],//分类数据
             }

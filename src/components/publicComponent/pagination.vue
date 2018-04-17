@@ -27,7 +27,7 @@
                 type: Number,
                 required: true,
             },
-            counter:{//共多少项
+            counter: {//共多少项
                 type: Number,
                 required: true,
             }
@@ -53,17 +53,17 @@
                 return Math.floor(this.page / 10) * 10;
             },
         },
-        watch:{
-            page(){
+        watch: {
+            page() {
                 this.ready();
             },
         },
-        mounted(){
+        mounted() {
             this.ready();
         },
-        methods:{
+        methods: {
             // 准备工作
-            ready(){
+            ready() {
                 let pagination = document.querySelector(".pagination").children;
                 if (this.page === 1) {
                     pagination[0].className += ' disabled';
@@ -74,26 +74,26 @@
                 pagination[this.page % 10].className += ' current'
             },
             // 上一页
-            previous(event){
-                if(this.page>1 && !event.currentTarget.parentNode.className.includes('disabled')){
+            previous(event) {
+                if (this.page > 1 && !event.currentTarget.parentNode.className.includes('disabled')) {
                     let params = {};
-                    params.page = this.page-1;
-                    this.$emit('turnPage',params);
+                    params.page = this.page - 1;
+                    this.$emit('turnPage', params);
                 }
 
             },
             //跳到指定页
-            locationToPage(event){
+            locationToPage(event) {
                 let params = {};
                 params.page = Number(event.currentTarget.innerHTML);
-                this.$emit('turnPage',params)
+                this.$emit('turnPage', params)
             },
             //下一页
-            next(event){
-                if(this.page < this.pageTotal && !event.currentTarget.parentNode.className.includes('disabled')){
+            next(event) {
+                if (this.page < this.pageTotal && !event.currentTarget.parentNode.className.includes('disabled')) {
                     let params = {};
-                    params.page = this.page+1;
-                    this.$emit('turnPage',params);
+                    params.page = this.page + 1;
+                    this.$emit('turnPage', params);
                 }
             }
         }

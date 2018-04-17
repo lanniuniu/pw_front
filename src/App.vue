@@ -9,33 +9,33 @@
     import adapt from './assets/js/adapt';//引入自适应js
     export default {
         name: 'app',
-        mounted(){
+        mounted() {
             adapt();
             this.titleChange();
             this.mode();
         },
-        methods:{
+        methods: {
             //title变换
-            titleChange(){
-                window.addEventListener("focus",function () {
+            titleChange() {
+                window.addEventListener("focus", function () {
                     document.querySelector("title").innerHTML = "欢迎回来（●＾∀＾●）";
                     setTimeout(function () {
-                        if(document.hasFocus()){
+                        if (document.hasFocus()) {
                             document.querySelector("title").innerHTML = "诗酒剑歌  (..•˘_˘•..)";
-                        }else {
+                        } else {
                             document.querySelector("title").innerHTML = "来找我呀！=￣ω￣= ";
                         }
-                    },1000)
+                    }, 1000)
                 });
-                window.addEventListener("blur",function () {
+                window.addEventListener("blur", function () {
                     document.querySelector("title").innerHTML = "来找我呀！=￣ω￣= ";
                 });
             },
             // 日夜间模式
-            mode(){
-                if(sessionStorage.getItem("mode")){
-                    document.querySelector("#cover").style.display = sessionStorage.getItem("mode")==='night'?'block':'none';
-                }else {
+            mode() {
+                if (sessionStorage.getItem("mode")) {
+                    document.querySelector("#cover").style.display = sessionStorage.getItem("mode") === 'night' ? 'block' : 'none';
+                } else {
                     document.querySelector("#cover").style.display = 'none';
                 }
             }
@@ -45,6 +45,7 @@
 
 <style>
     @import "./assets/css/reset.css";
+
     #app {
         position: absolute;
         width: 100rem;

@@ -5,19 +5,19 @@
                 <div class="preInput">
                     <span>标题</span>
                 </div>
-                <input type="text" placeholder="输入标题，必填" id="title" autofocus="autofocus">
+                <input type="text" placeholder="输入标题，必填" id="title" v-model="title" autofocus="autofocus">
             </div>
             <div class="input-group">
                 <div class="preInput">
                     <span>分类</span>
                 </div>
-                <input type="text" placeholder="输入分类，必填" id="classify">
+                <input type="text" placeholder="输入分类，必填" v-model="classify" id="classify">
             </div>
             <div class="input-group">
                 <div class="preInput">
                     <span>标签</span>
                 </div>
-                <input type="text" placeholder="输入标签，以空格间隔" id="tag">
+                <input type="text" placeholder="输入标签，以空格间隔" v-model="tag" id="tag">
             </div>
         </div>
         <mavon-editor id="editor" v-model="value" @save="save" @change="caching"/>
@@ -33,17 +33,27 @@
         name: "add-blog",
         data() {
             return {
-                value: '',
+                value: '',//markdown内容
                 newsTips: {//消息提示
                     background: '',//背景色
                     msg: '',//消息内容
                 },
+                title: '',//标题
+                classify: '',//分类
+                tag: '',//标签
             }
         },
-        created(){
-            let markdown = JSON.parse(localStorage.getItem('pw'));
-            if(!!markdown){
-                this.value = markdown
+        created() {
+            let id = window.location.href.split('_id=')[1]
+            if (id) {
+                //更改博客
+                this.getDetail(id);
+            } else {
+                //创建
+                let markdown = JSON.parse(localStorage.getItem('pw'));
+                if (!!markdown) {
+                    this.value = markdown
+                }
             }
         },
         methods: {
@@ -56,29 +66,49 @@
 
                 if (markdown && title && classify && tag) {
                     let isSaveToLocal = confirm('是否保存到本地');
-                    if(isSaveToLocal){
+                    if (isSaveToLocal) {
                         //保存到本地
-                        download(title,markdown)
+                        download(title, markdown)
                     }
                     params.content = html;
                     params.title = title;
                     params.classify = classify;
                     params.tag = tag;
-
+                    params.markdown = markdown;
                     params.csrfToken = this._getCookie('csrfToken');
                     params.ip = returnCitySN;
                     let self = this;
-                    this.$http.post('http://localhost:7001/blog/add',params).then(response=>{
-                        if(response.body.code === 200){
-                            self. _newsTips('blogNewsTips', 'success', response.body.msg);
-                            setTimeout(function () {
-                                localStorage.removeItem('pw');
-                                self.$router.push('/');
-                            },1500);
-                        }else {
-                            self. _newsTips('blogNewsTips', 'error', response.body.msg)
-                        }
-                    })
+                    let id = window.location.href.split('_id=')[1]
+                    if (id) {
+                        //更改博客
+                        params._id = id;
+                        this.$http.post('http://localhost:7001/blog/modify', params).then(response => {
+                            if (response.body.code === 200) {
+                                self._newsTips('blogNewsTips', 'success', response.body.msg);
+                                setTimeout(function () {
+                                    localStorage.removeItem('pw');
+                                    self.$router.push('/');
+                                }, 1500);
+                            } else {
+                                self._newsTips('blogNewsTips', 'error', response.body.msg)
+                            }
+                        })
+
+                    } else {
+                        //创建
+                        this.$http.post('http://localhost:7001/blog/add', params).then(response => {
+                            if (response.body.code === 200) {
+                                self._newsTips('blogNewsTips', 'success', response.body.msg);
+                                setTimeout(function () {
+                                    localStorage.removeItem('pw');
+                                    self.$router.push('/');
+                                }, 1500);
+                            } else {
+                                self._newsTips('blogNewsTips', 'error', response.body.msg)
+                            }
+                        })
+
+                    }
                 } else {
                     this._newsTips('blogNewsTips', 'error', '标题、分类、标签、博客内容不能为空');
                 }
@@ -86,8 +116,31 @@
             },
 
             //缓存
-            caching(markdown){
-                localStorage.setItem('pw',JSON.stringify(markdown));
+            caching(markdown) {
+                localStorage.setItem('pw', JSON.stringify(markdown));
+            },
+
+            //请求数据
+            getDetail(id) {
+                let params = {};
+                params._id = id;
+                params.csrfToken = this._getCookie('csrfToken');
+                let self = this;
+                this.$http.post('http://localhost:7001/blog/detail', params).then((response) => {
+                    if (response.body.code === 200) {
+                        self.render(response.body.data);
+                    } else {
+                        self._newsTips('blogDetailTips', 'error', '获取博客详情失败');
+                    }
+                });
+            },
+
+            //渲染数据
+            render(data) {
+                this.value = data.markdown;
+                this.title = data.title;
+                this.classify = data.classify;
+                this.tag = JSON.parse(data.tag).toString().replace(',', ' ');
             },
 
             /**

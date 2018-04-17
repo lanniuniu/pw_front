@@ -3,7 +3,8 @@
         <div id="leftMixed">
             <div class="blog" v-for="blog in blogLists">
                 <div class="blog-content">
-                    <h2 class="blog-content-title"><span :data-_id="blog._id" title="查看博客" @click="redirect">{{blog.title}}</span></h2>
+                    <h2 class="blog-content-title"><span :data-_id="blog._id" title="查看博客" @click="redirect">{{blog.title}}</span>
+                    </h2>
                     <p>{{blog.summary}}</p>
                 </div>
                 <div class="blog-footer">
@@ -17,7 +18,8 @@
                                                            title="评论" @click="toDo"></span></div>
                 </div>
             </div>
-            <pagination-component :page="pagination.page" :pageTotal="pagination.pageTotal" :counter="pagination.counter"
+            <pagination-component :page="pagination.page" :pageTotal="pagination.pageTotal"
+                                  :counter="pagination.counter"
                                   @turnPage="list"></pagination-component>
         </div>
         <news-tips-component id="homeTips" :backgroundProp="newsTips.background"
@@ -40,9 +42,9 @@
                 pagination: {//分页数据
                     page: 1,
                     pageTotal: 1,
-                    counter:1,
+                    counter: 1,
                 },
-                mode:'day',//日夜间模式
+                mode: 'day',//日夜间模式
             }
         },
         created() {
@@ -89,8 +91,8 @@
                 })
             },
             //跳转博客详情
-            redirect(event){
-                this.$router.push('/blog/detail/_id='+event.currentTarget.getAttribute('data-_id'))
+            redirect(event) {
+                this.$router.push('/blog/detail/_id=' + event.currentTarget.getAttribute('data-_id'))
             },
             //即将开放功能
             toDo() {

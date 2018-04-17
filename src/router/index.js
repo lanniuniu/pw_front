@@ -60,14 +60,32 @@ export default new Router({
             component: blogEdit,
             beforeEnter: (to, from, next) => {
                 let user = JSON.parse(sessionStorage.getItem('user'));
-                if (to.name === 'blogEdit' && to.fullPath === '/blog/edit' && user && user.username === 'admin') {
+                if (to.name === 'blogEdit' && user && user.username === 'admin') {
                     let clientInfo = _getClientInfo(navigator.userAgent);
                     if (config.whiteBrowser.includes(clientInfo.browser) && config.whiteSystem.includes(clientInfo.system)) {
                         next();
                     } else {
                         location.href = '/'
                     }
-                }else {
+                } else {
+                    location.href = '/'
+                }
+            },
+        },
+        {
+            path: '/blog/edit/:_id',
+            name: 'blogEdit',
+            component: blogEdit,
+            beforeEnter: (to, from, next) => {
+                let user = JSON.parse(sessionStorage.getItem('user'));
+                if (to.name === 'blogEdit' && user && user.username === 'admin') {
+                    let clientInfo = _getClientInfo(navigator.userAgent);
+                    if (config.whiteBrowser.includes(clientInfo.browser) && config.whiteSystem.includes(clientInfo.system)) {
+                        next();
+                    } else {
+                        location.href = '/'
+                    }
+                } else {
                     location.href = '/'
                 }
             },

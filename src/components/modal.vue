@@ -16,10 +16,8 @@
         name: "modal",
         mounted() {
         },
-        data(){
-            return{
-
-            }
+        data() {
+            return {}
         },
         methods: {
             //隐藏modal框

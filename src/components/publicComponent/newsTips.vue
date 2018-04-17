@@ -5,13 +5,11 @@
 <script>
     export default {
         name: "news-tips",
-        data(){
-            return{
-
-            }
+        data() {
+            return {}
         },
-        props:{
-            msgProp:{
+        props: {
+            msgProp: {
                 type: String,
                 required: true
             },
@@ -20,17 +18,15 @@
                 required: true
             }
         },
-        mounted(){
+        mounted() {
             document.querySelector(".newsTips").style.backgroundColor = this.backgroundProp;
         },
-        methods:{
-
-        }
+        methods: {}
     }
 </script>
 
 <style scoped lang="less">
-    div{
+    div {
         display: none;
         padding: 0 3rem;
         opacity: 1;
@@ -42,13 +38,15 @@
         top: 50%;
         left: 50%;
         transform-origin: 0 0;
-        transform: scale(0) translate(-50%,-50%) ;
+        transform: scale(0) translate(-50%, -50%);
         transition: transform 0.5s ease-in-out;
     }
-    .error{
+
+    .error {
         background-color: #dc3545;
     }
-    .success{
+
+    .success {
         background-color: #218838
     }
 </style>

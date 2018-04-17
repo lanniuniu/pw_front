@@ -23,15 +23,15 @@ import 'mavon-editor/dist/css/index.css'//引入mavon css样式
 Vue.config.productionTip = false;
 
 Vue.component('navbar-component', navbar);
-Vue.component('right-mixed-component',rightMixed);
-Vue.component('modal-component',modal);
-Vue.component('news-tips-component',newsTips);
-Vue.component('tooltips-component',tooltips);
-Vue.component('badge-component',badge);
-Vue.component('button-component',button);
-Vue.component('pagination-component',pagination);
-Vue.component('top-component',top);
-Vue.component('table-component',table);
+Vue.component('right-mixed-component', rightMixed);
+Vue.component('modal-component', modal);
+Vue.component('news-tips-component', newsTips);
+Vue.component('tooltips-component', tooltips);
+Vue.component('badge-component', badge);
+Vue.component('button-component', button);
+Vue.component('pagination-component', pagination);
+Vue.component('top-component', top);
+Vue.component('table-component', table);
 Vue.use(fontello);
 Vue.use(Resource);
 Vue.use(mavonEditor);

@@ -3,14 +3,21 @@
         <thead>
         <tr>
             <th v-for="value in header">{{value}}</th>
+            <th v-if="isOperate" style="width: 10%"></th>
         </tr>
         </thead>
         <tbody>
         <tr v-for="value in data">
             <th v-for="(indexValue) in index">
-                <a v-if="indexValue==='title'" class="title" @click="redirect" :data-_id="value._id">{{value[indexValue]}}</a>
-                <badge-component v-else-if="indexValue==='tag'" v-bind:key="Math.random()" v-for="badgeValue in value[indexValue]" class="badge badge-dark">{{badgeValue}}</badge-component>
+                <a v-if="indexValue==='title'" title="查看详情" class="title" @click="redirectToDetail"
+                   :data-_id="value._id">{{value[indexValue]}}</a>
+                <badge-component v-else-if="indexValue==='tag'" v-bind:key="Math.random()"
+                                 v-for="badgeValue in value[indexValue]" class="badge badge-dark">{{badgeValue}}
+                </badge-component>
                 <span v-else>{{value[indexValue]}}</span>
+            </th>
+            <th v-if="isOperate">
+                <a class="edit" @click="redirectToEdit" :data-_id="value._id">编辑</a>
             </th>
         </tr>
         </tbody>
@@ -39,14 +46,23 @@
         },
         created() {
         },
-        computed: {},
+        computed: {
+            isOperate() {
+                let user = JSON.parse(sessionStorage.getItem('user'));
+                return user && user.username === 'admin';
+            },
+        },
         mounted() {
 
         },
         methods: {
             //跳转博客详情
-            redirect(event){
-                this.$router.push('/blog/detail/_id='+event.currentTarget.getAttribute('data-_id'))
+            redirectToDetail(event) {
+                this.$router.push('/blog/detail/_id=' + event.currentTarget.getAttribute('data-_id'))
+            },
+            //跳转博客编辑
+            redirectToEdit(event) {
+                this.$router.push('/blog/edit/_id=' + event.currentTarget.getAttribute('data-_id'))
             },
         },
     }
@@ -82,47 +98,53 @@
                 font-weight: 500;
                 font-size: 1.2rem;
             }
-            .title{
+            .title {
                 cursor: pointer;
                 font-weight: 500;
             }
-            tr:nth-child(2){
+            .edit {
+                cursor: pointer;
+                text-decoration: none;
+                font-size: 1rem;
+                color: #212529;
+            }
+            tr:nth-child(2) {
                 background-color: #b8daff;
             }
-            tr:nth-child(3){
+            tr:nth-child(3) {
                 background-color: #d6d8db;
             }
-            tr:nth-child(4){
+            tr:nth-child(4) {
                 background-color: #c3e6cb;
             }
-            tr:nth-child(5){
+            tr:nth-child(5) {
                 background-color: #f5c6cb;
             }
-            tr:nth-child(6){
+            tr:nth-child(6) {
                 background-color: #ffeeba;
             }
-            tr:nth-child(7){
+            tr:nth-child(7) {
                 background-color: #bee5eb;
             }
-            tr:nth-child(8){
+            tr:nth-child(8) {
                 background-color: #fdfdfe;
             }
-            tr:nth-child(9){
+            tr:nth-child(9) {
                 background-color: #c6c8ca;
-                th{
+                th {
                     border-color: #32383e;
                 }
             }
-            tr:nth-child(10){
+            tr:nth-child(10) {
                 background-color: teal;
             }
-            .badge{
+            .badge {
                 margin-right: 1px;
             }
         }
     }
 
-    #noData{
+    #noData {
         padding: 3rem;
         text-align: center;
     }
