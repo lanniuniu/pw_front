@@ -1,13 +1,15 @@
 <template>
     <nav id="nav">
         <a href="/" class="brand">诗酒剑歌</a>
+
+        <!--功能菜单 start-->
         <div class="nav-list">
             <ul>
                 <li class="nav-item">
-                    <a class="nav-link" href="/"> <span class="icon-pw-home"></span>Home</a>
+                    <a class="nav-link" href="/#/"> <span class="icon-pw-home"></span>Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/blog/list"><span class="icon-pw-doc"></span>Blog</a>
+                    <a class="nav-link" href="/#/blog/list"><span class="icon-pw-doc"></span>Blog</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" @click="toDo"><span class="icon-pw-headphones"></span>Music</a>
@@ -18,13 +20,15 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#">
+                    <a href="/#/">
                         <span class="icon-pw-info-circled"></span>About me
                     </a>
                 </li>
 
             </ul>
         </div>
+        <!--功能菜单 end-->
+
         <div class="nav-behavior">
             <!--todo-->
             <!--<label for="search"><span class="icon-pw-search" title="搜索" @click="UISearch" id="searchBtn"></span>-->
