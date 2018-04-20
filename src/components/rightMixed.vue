@@ -2,10 +2,10 @@
     <div id="rightMixed">
         <section id="person">
             <div id="love">
-                <img src="../../static/img/dai-HD.jpg" alt="呆宝宝">
+                <img :src="dai" alt="呆宝宝">
             </div>
             <div id="mine">
-                <img src="../../static/img/cat.png" alt="懒牛牛">
+                <img :src="cat" alt="懒牛牛">
                 <div>
                     <h1>懒牛牛</h1>
                     <h4>一篇诗，一斗酒，一曲长歌，一剑天涯</h4>
@@ -30,8 +30,17 @@
 </template>
 
 <script>
+    import cat from '../assets/img/cat.jpg'
+    import dai from '../assets/img/dai.jpg'
+
     export default {
         name: "right-mixed",
+        data() {
+            return {
+                cat: cat,
+                dai: dai
+            }
+        },
         computed: {
             modeIcon() {
                 let mode = sessionStorage.getItem('mode');
