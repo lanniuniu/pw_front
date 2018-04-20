@@ -29,6 +29,7 @@
             this.getDetail();
         },
         mounted() {
+            this.top();
         },
         data() {
             return {
@@ -51,7 +52,7 @@
                 params._id = this.$route.params._id.split('=')[1];
                 params.csrfToken = this._getCookie('csrfToken');
                 let self = this;
-                this.$http.post('http://localhost:7001/blog/detail', params).then((response) => {
+                this.$http.post('/api/blog/detail', params).then((response) => {
                     if (response.body.code === 200) {
                         self.render(response.body.data);
                     } else {
@@ -86,6 +87,11 @@
                 this.releaseDate = `${releaseDate.getFullYear()}年${releaseDate.getMonth() + 1}月${releaseDate.getDate()}日`;
                 this.title = data.title;
                 this.reading = data.reading;
+            },
+
+            //top
+            top() {
+                document.documentElement.scrollTop = 0;
             },
 
             //即将开放功能

@@ -82,7 +82,7 @@
                     if (id) {
                         //更改博客
                         params._id = id;
-                        this.$http.post('http://localhost:7001/blog/modify', params).then(response => {
+                        this.$http.post('/api/blog/modify', params).then(response => {
                             if (response.body.code === 200) {
                                 self._newsTips('blogNewsTips', 'success', response.body.msg);
                                 setTimeout(function () {
@@ -96,7 +96,7 @@
 
                     } else {
                         //创建
-                        this.$http.post('http://localhost:7001/blog/add', params).then(response => {
+                        this.$http.post('/api/blog/add', params).then(response => {
                             if (response.body.code === 200) {
                                 self._newsTips('blogNewsTips', 'success', response.body.msg);
                                 setTimeout(function () {
@@ -126,7 +126,7 @@
                 params._id = id;
                 params.csrfToken = this._getCookie('csrfToken');
                 let self = this;
-                this.$http.post('http://localhost:7001/blog/detail', params).then((response) => {
+                this.$http.post('/api/blog/detail', params).then((response) => {
                     if (response.body.code === 200) {
                         self.render(response.body.data);
                     } else {

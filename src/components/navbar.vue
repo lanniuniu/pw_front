@@ -145,7 +145,7 @@
                     params.ip = JSON.stringify(this._getClientIP());
                     params.encodePassword = CryptoJS.AES.encrypt(password, params.csrfToken).toString();
                     let self = this;
-                    self.$http.post('http://localhost:7001/user/login', params).then(response => {
+                    self.$http.post('/api/user/login', params).then(response => {
                         let newsTips = document.querySelector(".newsTips");
                         if (response.body.code === 200) {
                             self.newsTips.background = 'success';
@@ -202,7 +202,7 @@
                 params.csrfToken = this._getCookie('csrfToken');
                 params.ip = JSON.stringify(this._getClientIP());
                 params.encodePassword = CryptoJS.AES.encrypt(password, params.csrfToken).toString();
-                this.$http.post('http://localhost:7001/user/add', params).then(response => {
+                this.$http.post('/api/user/add', params).then(response => {
                     // alert(response.msg)
                 });
             },
