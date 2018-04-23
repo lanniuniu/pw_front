@@ -5,7 +5,7 @@
                 <img :src="dai" alt="呆宝宝">
             </div>
             <div id="mine">
-                <img :src="cat" alt="懒牛牛">
+                <img :src="cat" alt="懒牛牛" @click="turnToAbout">
                 <div>
                     <h1>懒牛牛</h1>
                     <h4>一篇诗，一斗酒，一曲长歌，一剑天涯</h4>
@@ -52,6 +52,11 @@
             },
         },
         methods: {
+            //跳转关于界面
+            turnToAbout(){
+                this.$router.push('/blog/detail/_id=5add4b557846872da47b98f6')
+            },
+
             //改变日夜间模式
             changeModes(event) {
                 let target = event.currentTarget.firstChild;

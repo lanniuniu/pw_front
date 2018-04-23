@@ -20,7 +20,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/#/">
+                    <a href="/#/blog/detail/_id=5add4b557846872da47b98f6">
                         <span class="icon-pw-info-circled"></span>About me
                     </a>
                 </li>
