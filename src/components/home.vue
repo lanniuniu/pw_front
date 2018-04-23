@@ -70,13 +70,15 @@
                             let releaseDate = new Date(value.releaseDate);
                             value.releaseDate = `${releaseDate.getFullYear()}年${releaseDate.getMonth() + 1}月${releaseDate.getDate()}日`;
                             value.tag = JSON.parse(value.tag);
-                            let markdown = value.markdown;
-                            let summaryBigRegExp = new RegExp(/::: hljs-center↵↵/);
-                            let center = markdown.match(summaryBigRegExp);
-                            if (!!center) {
-                                value.summary = markdown.split("::: hljs-center↵↵")[1].split("↵↵:::")[0];
-                            } else {
-                                value.summary = '懒牛牛太懒了，连概括都忘记写了。(￣_,￣ )'
+                            let markdown = value.markdown?value.markdown:null;
+                            let summaryBigRegExp = new RegExp(/::: hljs-center[\n]{1,2}/);
+                            if(markdown){
+                              let center = markdown.match(summaryBigRegExp);
+                              if (!!center) {
+                                  value.summary = markdown.split(/::: hljs-center[\n]{1,2}/)[1].split(/[\n]{1,2}:::/)[0];
+                              } else {
+                                  value.summary = '懒牛牛太懒了，连概括都忘记写了。(￣_,￣ )'
+                              }
                             }
                             return value;
                         });
