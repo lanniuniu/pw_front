@@ -70,13 +70,11 @@
                             let releaseDate = new Date(value.releaseDate);
                             value.releaseDate = `${releaseDate.getFullYear()}年${releaseDate.getMonth() + 1}月${releaseDate.getDate()}日`;
                             value.tag = JSON.parse(value.tag);
-                            let content = value.content;
-                            let summaryBigRegExp = new RegExp(/<div class="hljs-center">[\n]?<p>[\w ]+<\/p>/);
-                            let center = content.match(summaryBigRegExp);
+                            let markdown = value.markdown;
+                            let summaryBigRegExp = new RegExp(/::: hljs-center↵↵/);
+                            let center = markdown.match(summaryBigRegExp);
                             if (!!center) {
-                                let summaryMediumRegExp = new RegExp(/<p>[\w ]+<\/p>/);
-                                let pAll = center[0].match(summaryMediumRegExp);
-                                value.summary = pAll[0].replace('<p>', '').replace('</p>', '');
+                                value.summary = markdown.split("::: hljs-center↵↵")[1].split("↵↵:::")[0];
                             } else {
                                 value.summary = '懒牛牛太懒了，连概括都忘记写了。(￣_,￣ )'
                             }
