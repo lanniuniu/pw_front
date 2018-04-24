@@ -140,7 +140,7 @@
                 this.value = data.markdown;
                 this.title = data.title;
                 this.classify = data.classify;
-                this.tag = JSON.parse(data.tag).toString().replace(',', ' ');
+                this.tag = JSON.parse(data.tag).toString().replace(/,/g,' ');
             },
 
             /**
