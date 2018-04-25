@@ -1,27 +1,32 @@
-# pw_front
+# 关于项目 #
+个人网站前端
 
-> A Vue.js project
+## 技术栈 ##
+- 逻辑框架——VUE犬家桶
+- UI:没使用框架，使用原生HTML5、CSS3
 
-## Build Setup
+## 正在开发的功能 ##
 
-``` bash
-# install dependencies
-npm install
+### 音乐 ###
+本人半吊子音乐发烧友，会在这部分分享很多我喜欢的音乐，并可以在线欣赏
 
-# serve with hot reload at localhost:8080
-npm run dev
+### 游戏 ###
+本人游戏发烧友，moba游戏狂热者。
+利用canvas 2D、webGL 3D、webAR、webVR等技术，来做一些网页游戏
 
-# build for production with minification
-npm run build
+### 移动端 ###
+本站的手机端
+想使用一些新兴技术来实现,想尝试的技术包括不仅限于PWA、WEEX、RN。
 
-# build for production and view the bundle analyzer report
-npm run build --report
+# 关于项目开发者 #
+懒牛牛，前端开发工程师，2年工作经验。半吊子音乐发烧友，游戏发烧友，米粉。
+2016年毕业于重庆邮电大学通信与信息工程学院
+毕业前半年到毕业后近一年，在北京汇通天下成都分公司实习和工作，之后回到重庆
+现于重庆市渝北区任职中移物联网某外包公司的前端开发工程师
 
-# run unit tests
-npm run unit
+## 联系方式 ##
+- e-mail: 1129638103@qq.com
+- 个人网站：http://67.216.205.19:5219 （域名待申请）
+- github：https://github.com/lanniuniu
+- phone：15922693453
 
-# run all tests
-npm test
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).

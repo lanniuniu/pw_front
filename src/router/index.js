@@ -98,6 +98,11 @@ export default new Router({
             path: '/blog/detail/:_id',
             name: 'blogDetail',
             component: blogDetail,
+        },
+        //关于的别名
+        {
+            path: '/blog/detail/_id=5add4b557846872da47b98f6',
+            alias: '/about'
         }
     ],
 

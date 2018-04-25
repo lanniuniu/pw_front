@@ -54,7 +54,7 @@
         methods: {
             //跳转关于界面
             turnToAbout(){
-                this.$router.push('/blog/detail/_id=5add4b557846872da47b98f6')
+                this.$router.push('/about')
             },
 
             //改变日夜间模式
