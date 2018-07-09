@@ -8,7 +8,7 @@ let white = {
         'Windows NT'
     ],
     whiteBrowser:[
-        'Chrome/66'
+        'Chrome/67'
     ],
 };
 export default white;
