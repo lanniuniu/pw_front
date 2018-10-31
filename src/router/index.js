@@ -15,8 +15,8 @@ const _getClientInfo = function (userAgent) {
     //判断客户端操作系统windows OS linux
     if (userAgent.includes('Windows NT')) {
         clientInfo.system = 'Windows NT';
-    } else if (userAgent.includes('MAC OS X')) {
-        clientInfo.system = 'MAC OS X';
+    } else if (userAgent.includes('Mac OS X')) {
+        clientInfo.system = 'Mac OS X';
     } else if (userAgent.includes('Linux')) {
         clientInfo.system = 'Linux';
     } else {
