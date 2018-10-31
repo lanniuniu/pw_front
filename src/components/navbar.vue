@@ -432,7 +432,7 @@
         //用户信息
         #userInfo {
             box-sizing: border-box;
-            width: 15rem;
+            width: 16rem;
             margin-top: 0.2rem;
             h5 {
                 margin: 0.5rem 0;
