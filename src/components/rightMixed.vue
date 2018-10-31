@@ -2,7 +2,7 @@
     <div id="rightMixed">
         <section id="person">
             <div id="love">
-                <img :src="dai" alt="呆宝宝">
+                <img :src="home" alt="我女朋友呢">
             </div>
             <div id="mine">
                 <img :src="cat" alt="懒牛牛" @click="turnToAbout">
@@ -31,14 +31,14 @@
 
 <script>
     import cat from '../assets/img/cat.jpg'
-    import dai from '../assets/img/dai.jpg'
+    import home from '../assets/img/home.jpeg'
 
     export default {
         name: "right-mixed",
         data() {
             return {
                 cat: cat,
-                dai: dai
+                home: home
             }
         },
         computed: {

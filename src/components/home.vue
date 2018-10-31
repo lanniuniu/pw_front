@@ -190,16 +190,16 @@
                     flex: 2;
                 }
                 .blog-footer-classify {
-                    flex: 1;
+                    flex: 1.5;
                 }
                 .blog-footer-tag {
-                    flex: 2;
+                    flex: 3;
                     > span {
                         margin-right: 1px;
                     }
                 }
                 .blog-footer-comment {
-                    flex: 1;
+                    flex: 0.1;
                     display: flex;
                     flex-direction: row;
                     justify-content: flex-end;

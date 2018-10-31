@@ -5,10 +5,11 @@
 let white = {
     //配置预定义
     whiteSystem:[
-        'Windows NT'
+        'Windows NT',
+        'Mac OS X'
     ],
     whiteBrowser:[
-        'Chrome/67'
+        'Chrome/70'
     ],
 };
 export default white;
