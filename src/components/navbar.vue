@@ -157,6 +157,7 @@
                             document.querySelector(".modal").style.display = 'none';
                             document.querySelector(".newsTips").style.display = 'block';
                             self.tooltips = response.body.user;
+                            self.tooltips.lastLoginDate = this.formatTime(response.body.user.lastLoginDate);
                             sessionStorage.setItem("user", JSON.stringify(response.body.user));
                             setTimeout(function () {
                                 newsTips.style.transform = 'scale(1) translate(-50%,-50%)';
@@ -197,6 +198,17 @@
                 }
             },
 
+            // 时间格式转换
+            formatTime (date) {
+                const Date = new Date(date)
+                const year = Date.getFullYear()
+                const month = Date.getMonth() < 9 ? `0${Date.getMonth() + 1}` : `${Date.getMonth() + 1}`
+                const day = Date.getDate() < 10 ? `0${Date.getDate()}` : Date.getDate()
+                const hours = Date.getHours() < 10 ? `0${Date.getHours()}` : Date.getHours()
+                const minutes = Date.getMinutes() < 10 ? `0${Date.getMinutes()}` : Date.getMinutes()
+                const seconds = Date.getSeconds() < 10 ? `0${Date.getSeconds()}` : Date.getSeconds()
+                return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`
+            },
 
             //添加用户
             addUser() {
