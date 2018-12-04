@@ -200,13 +200,13 @@
 
             // 时间格式转换
             formatTime (date) {
-                const Date = new Date(date)
-                const year = Date.getFullYear()
-                const month = Date.getMonth() < 9 ? `0${Date.getMonth() + 1}` : `${Date.getMonth() + 1}`
-                const day = Date.getDate() < 10 ? `0${Date.getDate()}` : Date.getDate()
-                const hours = Date.getHours() < 10 ? `0${Date.getHours()}` : Date.getHours()
-                const minutes = Date.getMinutes() < 10 ? `0${Date.getMinutes()}` : Date.getMinutes()
-                const seconds = Date.getSeconds() < 10 ? `0${Date.getSeconds()}` : Date.getSeconds()
+                const dateData = new Date(date)
+                const year = dateData.getFullYear()
+                const month = dateData.getMonth() < 9 ? `0${dateData.getMonth() + 1}` : `${dateData.getMonth() + 1}`
+                const day = dateData.getDate() < 10 ? `0${dateData.getDate()}` : dateData.getDate()
+                const hours = dateData.getHours() < 10 ? `0${dateData.getHours()}` : dateData.getHours()
+                const minutes = dateData.getMinutes() < 10 ? `0${dateData.getMinutes()}` : dateData.getMinutes()
+                const seconds = dateData.getSeconds() < 10 ? `0${dateData.getSeconds()}` : dateData.getSeconds()
                 return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`
             },
 
