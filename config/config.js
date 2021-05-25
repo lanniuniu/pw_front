@@ -9,7 +9,7 @@ let white = {
         'Mac OS X'
     ],
     whiteBrowser:[
-        'Chrome/85'
+        'Chrome/90'
     ],
 };
 export default white;
