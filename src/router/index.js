@@ -61,8 +61,7 @@ export default new Router({
                 let user = JSON.parse(sessionStorage.getItem('user'));
                 if (to.name === 'blogEdit' && user && user.username === 'admin') {
                     let clientInfo = _getClientInfo(navigator.userAgent);
-                  let browserRegExp = new RegExp(config.whiteBrowser[0])
-                  if (!!clientInfo.browser.match(browserRegExp) && config.whiteSystem.includes(clientInfo.system)) {
+                    if (config.whiteBrowser.includes(clientInfo.browser) && config.whiteSystem.includes(clientInfo.system)) {
                         next();
                     } else {
                         location.href = '/'
