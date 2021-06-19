@@ -85,6 +85,7 @@
                         self.pagination.page = response.body.data.page;
                         self.pagination.pageTotal = response.body.data.pageTotal;
                         self.pagination.counter = response.body.data.counter;
+                        document.documentElement.scrollTop = 0;
                     } else {
                         self._newsTips('blogListTips', 'error', '获取博客列表失败');
                     }

@@ -1,13 +1,13 @@
 <template>
     <nav>
         <ul class="pagination">
-            <li class="page-item">
+            <li class="page-item" :class="{disabled: page === 1}">
                 <a class="page-link" @click="previous">Previous</a>
             </li>
-            <li v-for="index in pageCount" class="page-item">
+            <li v-for="index in pageTotal" :key="index" class="page-item" :data-info="index" :class="{current: index === page}">
                 <a class="page-link" @click="locationToPage">{{index + pageStart}}</a>
             </li>
-            <li class="page-item" :data-info="info">
+            <li class="page-item" :class="{disabled: page === pageTotal}">
                 <a class="page-link" @click="next">Next</a>
             </li>
             <li class="info">{{info}}</li>
@@ -38,7 +38,7 @@
         computed: {
             //分页信息
             info() {
-                return `当前第${this.page}页,共${this.counter}项`;
+                return `当前第${this.page}页,共${this.counter}条`;
             },
             //分页——显示的页总数
             pageCount() {
@@ -53,26 +53,7 @@
                 return Math.floor(this.page / 10) * 10;
             },
         },
-        watch: {
-            page() {
-                this.ready();
-            },
-        },
-        mounted() {
-            this.ready();
-        },
         methods: {
-            // 准备工作
-            ready() {
-                let pagination = document.querySelector(".pagination").children;
-                if (this.page === 1) {
-                    pagination[0].className += ' disabled';
-                }
-                if (this.page === this.pageTotal) {
-                    pagination[pagination.length - 2].className += ' disabled';
-                }
-                pagination[this.page % 10].className += ' current'
-            },
             // 上一页
             previous(event) {
                 if (this.page > 1 && !event.currentTarget.parentNode.className.includes('disabled')) {
@@ -128,8 +109,11 @@
                     background-color: #e9ecef;
                 }
             }
-            .current > a {
-                background-color: #e9ecef !important;
+            .current {
+                a {
+                    background-color: #e9ecef !important;
+                    cursor: not-allowed!important;
+                }
             }
             .disabled > a {
                 color: #dee2e6 !important;
