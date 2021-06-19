@@ -11,14 +11,14 @@
                     <div class="blog-footer-time">发布日期:{{blog.releaseDate}}</div>
                     <div class="blog-footer-classify">分类:{{blog.classify}}</div>
                     <div class="blog-footer-tag">标签:
-                        <badge-component class="badge badge-dark" :key="Math.random()" v-for="tag in blog.tag">{{tag}}
+                        <badge-component class="badge badge-dark" v-for="(tag, index) in blog.tag" :key="index" >{{tag}}
                         </badge-component>
                     </div>
                     <div class="blog-footer-comment"><span class="icon-commenting" :data-_id="blog._id"
                                                            title="评论" @click="toDo"></span></div>
                 </div>
             </div>
-            <pagination-component :page="pagination.page" :pageTotal="pagination.pageTotal"
+            <pagination-component v-show="pagination.counter" :page="pagination.page" :pageTotal="pagination.pageTotal"
                                   :counter="pagination.counter"
                                   @turnPage="list"></pagination-component>
         </div>

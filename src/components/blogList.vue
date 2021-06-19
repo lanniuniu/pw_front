@@ -20,7 +20,7 @@
         </div>
         <div id="blogList">
             <table-component :data="table.data" :header="table.header" :index="table.index"></table-component>
-            <pagination-component :page="pagination.page" :pageTotal="pagination.pageTotal"
+            <pagination-component v-show="pagination.counter" :page="pagination.page" :pageTotal="pagination.pageTotal"
                                   :counter="pagination.counter"
                                   @turnPage="list"></pagination-component>
         </div>
