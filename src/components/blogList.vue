@@ -46,7 +46,7 @@
                 pagination: {//分页数据
                     page: 1,
                     pageTotal: 1,
-                    counter: 1,
+                    counter: 0,
                 },
                 classify: [],//分类数据
             }
