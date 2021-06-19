@@ -42,7 +42,7 @@
                 pagination: {//分页数据
                     page: 1,
                     pageTotal: 1,
-                    counter: 1,
+                    counter: 0,
                 },
                 mode: 'day',//日夜间模式
             }
