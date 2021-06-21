@@ -1,7 +1,7 @@
 <template>
     <div id="home">
         <div id="leftMixed">
-            <div class="blog" v-for="blog in blogLists">
+            <div class="blog" v-for="(blog, index) in blogLists" :key=index>
                 <div class="blog-content">
                     <h2 class="blog-content-title"><span :data-_id="blog._id" title="查看博客" @click="redirect">{{blog.title}}</span>
                     </h2>
@@ -70,16 +70,6 @@
                             let releaseDate = new Date(value.releaseDate);
                             value.releaseDate = `${releaseDate.getFullYear()}年${releaseDate.getMonth() + 1}月${releaseDate.getDate()}日`;
                             value.tag = JSON.parse(value.tag);
-                            let markdown = value.markdown?value.markdown:null;
-                            let summaryBigRegExp = new RegExp(/::: hljs-center[\n]{1,2}/);
-                            if(markdown){
-                              let center = markdown.match(summaryBigRegExp);
-                              if (!!center) {
-                                  value.summary = markdown.split(/::: hljs-center[\n]{1,2}/)[1].split(/[\n]{1,2}:::/)[0];
-                              } else {
-                                  value.summary = '懒牛牛太懒了，连概括都忘记写了。(￣_,￣ )'
-                              }
-                            }
                             return value;
                         });
                         self.pagination.page = response.body.data.page;
