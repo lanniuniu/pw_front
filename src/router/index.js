@@ -26,19 +26,19 @@ const _getClientInfo = function (userAgent) {
     //判断所访问的浏览器信息
     if (userAgent.includes('Chrome/') && userAgent.includes('Safari/')) {
         //谷歌
-        let chromeRegExp = new RegExp("Chrome/[0-9.]+");
+        let chromeRegExp = new RegExp("Chrome/[0-9]+");
         clientInfo.browser = userAgent.match(chromeRegExp)[0];
     } else if (userAgent.includes('Safari/') && userAgent.includes('Chrome/') === false) {
         //safari
-        let safariRegExp = new RegExp("Safari/[0-9.]+");
+        let safariRegExp = new RegExp("Safari/[0-9]+");
         clientInfo.browser = userAgent.match(safariRegExp)[0];
     } else if (userAgent.includes('Firefox/')) {
         //Firefox
-        let firefoxRegExp = new RegExp("Firefox/[0-9.]+");
+        let firefoxRegExp = new RegExp("Firefox/[0-9]+");
         clientInfo.browser = userAgent.match(firefoxRegExp)[0];
     } else if (userAgent.includes('Opera/')) {
         //opera
-        let operaRegExp = new RegExp("Opera/[0-9.]+");
+        let operaRegExp = new RegExp("Opera/[0-9]+");
         clientInfo.browser = userAgent.match(operaRegExp)[0];
     } else {
         clientInfo.browser = 'unknown'
