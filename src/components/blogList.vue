@@ -13,7 +13,7 @@
                 </div>
                 <select name="classify" id="classify">
                     <option value="">选择分类</option>
-                    <option v-for="value in classify" :value="value">{{value}}</option>
+                    <option v-for="(value, index) in classify" :value="value" :key="index">{{value}}</option>
                 </select>
             </div>
             <span class="icon-pw-search" id="search" @click="list"></span>
@@ -72,7 +72,7 @@
                 }
                 query.csrfToken = this._getCookie('csrfToken');
                 let self = this;
-                this.$http.post('/api/blog/list', query).then((response) => {
+                this.$http.get('/api/blog/list', {params: query}).then((response) => {
                     if (response.body.code === 200) {
                         self.table.data = response.body.data.data.map((value) => {
                             let releaseDate = new Date(value.releaseDate);
