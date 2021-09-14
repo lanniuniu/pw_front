@@ -31,6 +31,11 @@
         mounted() {
             this.top();
         },
+        watch: {
+            $route(to, from) {
+              this.getDetail()
+            }
+        },
         data() {
             return {
                 classify: null,//分类
