@@ -69,6 +69,9 @@
             //渲染数据
             render(data) {
                 let blog = document.querySelector("#blogContent");
+                if (blog.children.length > 1) {
+                    blog.removeChild(blog.children[1])
+                }
                 let contentHtml = document.createElement('div');
                 contentHtml.setAttribute('class', 'markdown-body');
                 contentHtml.innerHTML = data.content;
