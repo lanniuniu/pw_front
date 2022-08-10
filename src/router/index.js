@@ -58,15 +58,17 @@ export default new Router({
             name: 'blogEdit',
             component: blogEdit,
             beforeEnter: (to, from, next) => {
-                let user = JSON.parse(sessionStorage.getItem('user'));
+                const user = JSON.parse(sessionStorage.getItem('user'));
                 if (to.name === 'blogEdit' && user && user.username === 'admin') {
                     let clientInfo = _getClientInfo(navigator.userAgent);
                     if (config.whiteBrowser.test(clientInfo.browser) && config.whiteSystem.includes(clientInfo.system)) {
                         next();
                     } else {
+                        debugger;
                         location.href = '/'
                     }
                 } else {
+                    debugger;
                     location.href = '/'
                 }
             },
@@ -76,7 +78,7 @@ export default new Router({
             name: 'blogEdit',
             component: blogEdit,
             beforeEnter: (to, from, next) => {
-                let user = JSON.parse(sessionStorage.getItem('user'));
+                const user = JSON.parse(sessionStorage.getItem('user'));
                 if (to.name === 'blogEdit' && user && user.username === 'admin') {
                     let clientInfo = _getClientInfo(navigator.userAgent);
                     if (config.whiteBrowser.test(clientInfo.browser) && config.whiteSystem.includes(clientInfo.system)) {
