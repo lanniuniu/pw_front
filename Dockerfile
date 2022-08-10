@@ -4,7 +4,7 @@ FROM node:10.24.0 as builder
 WORKDIR /app
 # 只复制package.json 去安装node_modules
 COPY package.json .
-RUN npm install --registry=https://registry.npm.taobao.org
+RUN npm install
 ADD . . 
 RUN npm run build
 
