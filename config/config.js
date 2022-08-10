@@ -8,6 +8,6 @@ let white = {
         'Windows NT',
         'Mac OS X'
     ],
-    whiteBrowser: /Chrome/,
+    whiteBrowser: new RegExp("Chrome"),
 };
 export default white;
