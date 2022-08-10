@@ -1,5 +1,5 @@
 # 拉取node镜像 取个builder的别名
-FROM node:latest as builder 
+FROM node:10.24.0 as builder 
 # 指定工作目录
 WORKDIR /app
 # 只复制package.json 去安装node_modules
