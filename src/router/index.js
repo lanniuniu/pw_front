@@ -64,11 +64,16 @@ export default new Router({
                     if (config.whiteBrowser.test(clientInfo.browser) && config.whiteSystem.includes(clientInfo.system)) {
                         next();
                     } else {
+                        console.log(config.whiteBrowser.test(clientInfo.browser))
+                        console.log(config.whiteSystem.includes(clientInfo.system))
                         debugger;
                         location.href = '/'
                     }
                 } else {
                     debugger;
+                    console.log(to.name === 'blogEdit')
+                    console.log(user)
+                    console.log(user.username === 'admin')
                     location.href = '/'
                 }
             },
