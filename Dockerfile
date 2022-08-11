@@ -4,12 +4,11 @@ FROM node:10.24.0 as builder
 WORKDIR /app
 # 只复制package.json 去安装node_modules
 COPY package.json .
-RUN curl -o- -L https://yarnpkg.com/install.sh | bash
-RUN $HOME/.yarn/bin/yarn install
+RUN npm install --registry=https://registry.npm.taobao.org
 ADD . . 
-RUN $HOME/.yarn/bin/yarn build
+RUN npm run build
 
-FROM nginx:latest
+FROM nginx:1.14.0
 COPY nginx.conf /etc/nginx
 # 多阶段构建 将叫builder的镜像指定目录复制到当前工作目录
 COPY --from=builder /app/dist  /usr/share/nginx/html
