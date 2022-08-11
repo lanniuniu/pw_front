@@ -57,32 +57,11 @@ export default new Router({
             path: '/blog/edit',
             name: 'blogEdit',
             component: blogEdit,
-            beforeEnter: (to, from, next) => {
-                let clientInfo = _getClientInfo(navigator.userAgent);
-                if (config.whiteBrowser.test(clientInfo.browser) && config.whiteSystem.includes(clientInfo.system)) {
-                    next();
-                } else {
-                    location.href = '/'
-                }
-            },
         },
         {
             path: '/blog/edit/:_id',
             name: 'blogEdit',
             component: blogEdit,
-            beforeEnter: (to, from, next) => {
-                const user = JSON.parse(sessionStorage.getItem('user'));
-                if (to.name === 'blogEdit' && user && user.username === 'admin') {
-                    let clientInfo = _getClientInfo(navigator.userAgent);
-                    if (config.whiteBrowser.test(clientInfo.browser) && config.whiteSystem.includes(clientInfo.system)) {
-                        next();
-                    } else {
-                        location.href = '/'
-                    }
-                } else {
-                    location.href = '/'
-                }
-            },
         },
         {
             path: '/blog/list',
