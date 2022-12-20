@@ -20,6 +20,15 @@
 <div id="app"></div>
 <div id="cover"></div>
 <!-- built files will be auto injected -->
-<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+<script>
+function jsShow(obj){
+    window.returnCitySN = JSON.stringify({
+        cip: obj.ip,
+        cname: obj.city,
+    });
+}
+</script>
+
+<script src="http://whois.pconline.com.cn/ipJson.jsp?callback=jsShow"></script>
 </body>
 </html>

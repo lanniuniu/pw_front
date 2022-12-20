@@ -34,6 +34,7 @@ Vue.component('top-component', top);
 Vue.component('table-component', table);
 Vue.use(fontello);
 Vue.use(Resource);
+Vue.http.options.emulateJSON = true;
 Vue.use(mavonEditor);
 
 /* eslint-disable no-new */
