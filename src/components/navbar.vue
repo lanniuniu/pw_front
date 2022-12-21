@@ -146,7 +146,7 @@
                 if (password && params.username) {
                     params.csrfToken = this._getCookie('csrfToken');
                     params.token = this._getCookie('token');
-                    params.ip = JSON.stringify(this._getClientIP());
+                    params.ip = this._getClientIP();
                     params.encodePassword = CryptoJS.AES.encrypt(password, params.csrfToken).toString();
                     let self = this;
                     self.$http.post('/api/user/login', params).then(response => {
