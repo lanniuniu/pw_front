@@ -12,14 +12,6 @@
                     <a class="nav-link" href="/#/blog/list"><span class="icon-pw-doc"></span>Blog</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" @click="toDo"><span class="icon-pw-headphones"></span>Music</a>
-                </li>
-                <li class="nav-item">
-                    <a @click="toDo">
-                        <span class="icon-pw-gamepad"></span>Game
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a href="/#/about">
                         <span class="icon-pw-info-circled"></span>About me
                     </a>

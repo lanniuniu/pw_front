@@ -14,8 +14,8 @@
                         <badge-component class="badge badge-dark" v-for="(tag, index) in blog.tag" :key="index" >{{tag}}
                         </badge-component>
                     </div>
-                    <div class="blog-footer-comment"><span class="icon-commenting" :data-_id="blog._id"
-                                                           title="评论" @click="toDo"></span></div>
+                    <!-- <div class="blog-footer-comment"><span class="icon-commenting" :data-_id="blog._id"
+                                                           title="评论" @click="toDo"></span></div> -->
                 </div>
             </div>
             <pagination-component v-show="pagination.counter" :page="pagination.page" :pageTotal="pagination.pageTotal"
