@@ -48,7 +48,7 @@
 
     #app {
         position: absolute;
-        width: 100rem;
+        width: 100%;
         background-color: #f6f6f6;
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
