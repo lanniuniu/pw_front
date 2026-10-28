@@ -76,7 +76,6 @@
                     params.tag = tag;
                     params.markdown = markdown;
                     params.csrfToken = this._getCookie('csrfToken');
-                    params.ip = returnCitySN;
                     let self = this;
                     let id = window.location.href.split('_id=')[1]
                     if (id) {

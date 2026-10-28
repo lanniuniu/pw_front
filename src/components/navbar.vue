@@ -146,7 +146,6 @@
                 if (password && params.username) {
                     params.csrfToken = this._getCookie('csrfToken');
                     params.token = this._getCookie('token');
-                    params.ip = this._getClientIP();
                     params.encodePassword = CryptoJS.AES.encrypt(password, params.csrfToken).toString();
                     let self = this;
                     self.$http.post('/api/user/login', params).then(response => {
@@ -216,7 +215,6 @@
                 params.username = document.querySelector("#username").value.toString();
                 let password = document.querySelector("#password").value.toString();
                 params.csrfToken = this._getCookie('csrfToken');
-                params.ip = JSON.stringify(this._getClientIP());
                 params.encodePassword = CryptoJS.AES.encrypt(password, params.csrfToken).toString();
                 this.$http.post('/api/user/add', params).then(response => {
                     // alert(response.msg)
@@ -302,10 +300,6 @@
                 } else {
                     return '无法找到指定cookie'
                 }
-            },
-            //获取客户端ip
-            _getClientIP() {
-                return returnCitySN;
             },
             //测试
             test(key) {
