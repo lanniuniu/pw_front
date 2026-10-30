@@ -2,6 +2,12 @@ export default {
   // 服务器渲染
   ssr: true,
 
+  // 监听所有网络接口，允许容器间通信
+  server: {
+    host: '0.0.0.0',
+    port: 3000
+  },
+
   // 全局页面标题
   head: {
     title: '诗酒剑歌',
