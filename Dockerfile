@@ -1,7 +1,7 @@
 FROM node:10.24.0
 WORKDIR /app
 COPY package.json .
-RUN npm install --registry=https://registry.npm.taobao.org
+RUN npm config set registry https://registry.npmjs.org/ && npm install
 ADD . .
 RUN npm run build
 EXPOSE 3000
