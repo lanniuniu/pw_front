@@ -82,7 +82,7 @@
             },
             //跳转博客详情
             redirect(event) {
-                this.$router.push('/blog/detail/_id=' + event.currentTarget.getAttribute('data-_id'))
+                this.$router.push('/blog/detail/' + event.currentTarget.getAttribute('data-_id'))
             },
             //即将开放功能
             toDo() {

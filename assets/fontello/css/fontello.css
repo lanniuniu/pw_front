@@ -1,0 +1,76 @@
+@font-face {
+  font-family: 'fontello';
+  src: url('../font/fontello.eot?11915642');
+  src: url('../font/fontello.eot?11915642#iefix') format('embedded-opentype'),
+       url('../font/fontello.woff2?11915642') format('woff2'),
+       url('../font/fontello.woff?11915642') format('woff'),
+       url('../font/fontello.ttf?11915642') format('truetype'),
+       url('../font/fontello.svg?11915642#fontello') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'fontello';
+    src: url('../font/fontello.svg?11915642#fontello') format('svg');
+  }
+}
+*/
+ 
+ [class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family: "fontello";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+ 
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+ 
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+ 
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+ 
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+ 
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+ 
+  /* Font smoothing. That was taken from TWBS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+ 
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+ 
+.icon-rocket:before { content: '\e981'; } /* '' */
+.icon-folder-open:before { content: '\e982'; } /* '' */
+.icon-calendar:before { content: '\e983'; } /* '' */
+.icon-commenting:before { content: '\e984'; } /* '' */
+.icon-pw-sun:before { content: '\e985'; } /* '' */
+.icon-pw-moon:before { content: '\e986'; } /* '' */
+.icon-pw-github-circled:before { content: '\e987'; } /* '' */
+.icon-pw-weibo:before { content: '\e988'; } /* '' */
+.icon-pw-users:before { content: '\e989'; } /* '' */
+.icon-pw-mail-alt:before { content: '\e990'; } /* '' */
+.icon-pw-qq:before { content: '\e991'; } /* '' */
+.icon-pw-login:before { content: '\e992'; } /* '' */
+.icon-pw-search:before { content: '\e993'; } /* '' */
+.icon-pw-gamepad:before { content: '\e994'; } /* '' */
+.icon-pw-headphones:before { content: '\e995'; } /* '' */
+.icon-pw-eye:before { content: '\e996'; } /* '' */
+.icon-pw-doc:before { content: '\e997'; } /* '' */
+.icon-pw-home:before { content: '\e998'; } /* '' */
+.icon-pw-info-circled:before { content: '\e999'; } /* '' */

@@ -1,20 +1,20 @@
 <template>
     <nav id="nav">
-        <a href="/" class="brand">诗酒剑歌</a>
+        <router-link to="/" class="brand">诗酒剑歌</router-link>
 
         <!--功能菜单 start-->
         <div class="nav-list">
             <ul>
                 <li class="nav-item">
-                    <a class="nav-link" href="/#/"> <span class="icon-pw-home"></span>Home</a>
+                    <router-link class="nav-link" to="/"> <span class="icon-pw-home"></span>Home</router-link>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/#/blog/list"><span class="icon-pw-doc"></span>Blog</a>
+                    <router-link class="nav-link" to="/blog/list"><span class="icon-pw-doc"></span>Blog</router-link>
                 </li>
                 <li class="nav-item">
-                    <a href="/#/about">
+                    <router-link to="/about">
                         <span class="icon-pw-info-circled"></span>About me
-                    </a>
+                    </router-link>
                 </li>
 
             </ul>

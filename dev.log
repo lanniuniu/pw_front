@@ -1,0 +1,103 @@
+nohup: ignoring input
+
+> pw_front@2.0.0 dev
+> nuxt
+
+i [HPM] Proxy created: /api  -> http://localhost:7001/
+i Listening on: http://localhost:3000/
+i Preparing project for development
+i Initial build may take a while
+√ Builder initialized
+√ Nuxt files generated
+
+ WARN  Please use build.postcss in your nuxt.config.js instead of an external config file. Support for such files will be removed in Nuxt 3 as they remove all defaults set by Nuxt and can cause severe problems with features like alias resolving inside your CSS.
+
+i Compiling Client
+i Compiling Server
+√ Server: Compiled successfully in 4.99s
+√ Client: Compiled successfully in 5.88s
+i Waiting for file changes
+i Memory usage: 245 MB (RSS: 339 MB)
+i Listening on: http://localhost:3000/
+
+ ERROR  [Vue warn]: Do not use built-in or reserved HTML elements as component id: button
+
+
+ ERROR  [Vue warn]: Do not use built-in or reserved HTML elements as component id: table
+
+
+ ERROR  [HPM] Error occurred while proxying request localhost:3000/api/blog/list?csrfToken= to http://localhost:7001/ [ECONNREFUSED] (https://nodejs.org/api/errors.html#errors_common_system_errors)
+
+
+ ERROR  [Vue warn]: Error in render: "ReferenceError: sessionStorage is not defined"
+
+found in
+
+---> <NavbarComponent> at components/navbar.vue
+       <DefaultLayout> at layouts/default.vue
+         <Root>
+
+
+ ERROR  [Vue warn]: Do not use built-in or reserved HTML elements as component id: button
+
+
+ ERROR  [Vue warn]: Do not use built-in or reserved HTML elements as component id: table
+
+
+ ERROR  [HPM] Error occurred while proxying request localhost:3000/api/blog/classify to http://localhost:7001/ [ECONNREFUSED] (https://nodejs.org/api/errors.html#errors_common_system_errors)
+
+
+ ERROR  [HPM] Error occurred while proxying request localhost:3000/api/blog/list?csrfToken= to http://localhost:7001/ [ECONNREFUSED] (https://nodejs.org/api/errors.html#errors_common_system_errors)
+
+
+ ERROR  [Vue warn]: Error in render: "ReferenceError: sessionStorage is not defined"
+
+found in
+
+---> <NavbarComponent> at components/navbar.vue
+       <DefaultLayout> at layouts/default.vue
+         <Root>
+
+
+ ERROR  [Vue warn]: Do not use built-in or reserved HTML elements as component id: button
+
+
+ ERROR  [Vue warn]: Do not use built-in or reserved HTML elements as component id: table
+
+
+ ERROR  [HPM] Error occurred while proxying request localhost:3000/api/blog/detail to http://localhost:7001/ [ECONNREFUSED] (https://nodejs.org/api/errors.html#errors_common_system_errors)
+
+
+ ERROR  [Vue warn]: Error in render: "ReferenceError: sessionStorage is not defined"
+
+found in
+
+---> <NavbarComponent> at components/navbar.vue
+       <DefaultLayout> at layouts/default.vue
+         <Root>
+
+
+ ERROR  [Vue warn]: Do not use built-in or reserved HTML elements as component id: button
+
+
+ ERROR  [Vue warn]: Do not use built-in or reserved HTML elements as component id: table
+
+
+ ERROR  Cannot read properties of undefined (reading 'value')
+
+  at asyncData (webpack-internal:///./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./pages/blog/edit/_id.vue?vue&type=script&lang=js:27:23)
+  at promisify (webpack-internal:///./.nuxt/utils.js:297:15)
+  at eval (webpack-internal:///./.nuxt/server.js:274:82)
+  at Array.map (<anonymous>)
+  at __webpack_exports__.default (webpack-internal:///./.nuxt/server.js:269:51)
+
+» Updated components\navbar.vue
+i Compiling Server
+i Compiling Client
+√ Server: Compiled successfully in 411.53ms
+√ Client: Compiled successfully in 500.66ms
+» Updated components\publicComponent\button.vue
+i Compiling Server
+i Compiling Client
+√ Server: Compiled successfully in 604.63ms
+√ Client: Compiled successfully in 599.06ms

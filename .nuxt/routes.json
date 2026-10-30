@@ -1,0 +1,46 @@
+[
+  {
+    "name": "about",
+    "path": "/about",
+    "component": "D:\\\\work\\\\pw_front\\\\pages\\\\about.vue",
+    "chunkName": "pages/about",
+    "_name": "_0cd0978f"
+  },
+  {
+    "name": "blog-edit",
+    "path": "/blog/edit",
+    "component": "D:\\\\work\\\\pw_front\\\\pages\\\\blog\\\\edit.vue",
+    "chunkName": "pages/blog/edit",
+    "children": [
+      {
+        "name": "blog-edit-id",
+        "path": ":id?",
+        "component": "D:\\\\work\\\\pw_front\\\\pages\\\\blog\\\\edit\\\\_id.vue",
+        "chunkName": "pages/blog/edit/_id",
+        "_name": "_4bbe6910"
+      }
+    ],
+    "_name": "_f62592cc"
+  },
+  {
+    "name": "blog-list",
+    "path": "/blog/list",
+    "component": "D:\\\\work\\\\pw_front\\\\pages\\\\blog\\\\list.vue",
+    "chunkName": "pages/blog/list",
+    "_name": "_75a50f2e"
+  },
+  {
+    "name": "blog-detail-id",
+    "path": "/blog/detail/:id?",
+    "component": "D:\\\\work\\\\pw_front\\\\pages\\\\blog\\\\detail\\\\_id.vue",
+    "chunkName": "pages/blog/detail/_id",
+    "_name": "_917506ae"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "D:\\\\work\\\\pw_front\\\\pages\\\\index.vue",
+    "chunkName": "pages/index",
+    "_name": "_2c887254"
+  }
+]
