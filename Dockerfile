@@ -1,4 +1,4 @@
-FROM node:10.24.0
+FROM node:14.18.0
 WORKDIR /app
 COPY package.json .
 RUN npm config set registry https://registry.npmjs.org/ && npm install
