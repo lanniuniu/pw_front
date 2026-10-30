@@ -1,4 +1,4 @@
-git pull origin master;
+git pull origin feat/ssr;
 docker stop pw_front pw_nginx 2>/dev/null;
 docker rm pw_front pw_nginx 2>/dev/null;
 docker build -t pw_front .;
